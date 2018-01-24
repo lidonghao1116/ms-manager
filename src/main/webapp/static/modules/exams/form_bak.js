@@ -1,0 +1,96 @@
+var obj={
+	add:function(){
+		
+		var params={
+			className:$("#className").val(),
+			classNumber:$("#classNumber").val(),
+			courseId:GetSelectValue("#courseId"),
+			shoolId:GetSelectValue("#shoolId"),
+			examForm:GetSelectValue("#examForm"),
+			theoryDate:$("#theoryDate").val(),
+			theoryAddress:$("#theoryAddress").val(),
+			operationDate:$("#operationDate").val(),
+			operationAddress:$("#operationAddress").val()
+		};
+		
+		//提交问题
+		layer.confirm('确认添加此班级吗？',function(){
+	        $.ajax({
+	          url :config.examsAddUrl,
+	          type : "POST",
+	          data: params,
+	          success: function(data){
+	            if(data.success){
+	            	layer.alert(data.msg, {icon:1});
+	            	window.location.href=config.examsListUrl;
+	            }else{
+	              	layer.msg(data.msg);
+	            }
+	          }
+	        });
+		});
+		
+	}
+	,
+	modify:function(){
+		alert("1");
+		var params={
+			id:$("#id").val(),
+			examStatus:GetSelectValue("#examStatus"),
+			theoryDate:$("#theoryDate").val(),
+			theoryAddress:$("#theoryAddress").val(),
+			operationDate:$("#operationDate").val(),
+			operationAddress:$("#operationAddress").val()
+		};
+		
+		//提交问题
+		layer.confirm('确认修改此班级吗？',function(){
+	        $.ajax({
+	          url :config.examsModifyUrl,
+	          type : "POST",
+	          data: params,
+	          success: function(data){
+	            if(data.success){
+	            	layer.alert(data.msg, {icon:1});
+	            	window.location.href=config.examsListUrl;
+	            }else{
+	              	layer.msg(data.msg);
+	            }
+	          }
+	        });
+		});
+		
+	}
+	,
+	exportExcel:function(){
+		$("#queryForm").attr("action",ctx+"/exams/export/01");
+		$("#queryForm").submit();
+	}
+	,
+	init:function(){
+		//初始化绑定事件
+		$("#addBtn").bind("click",function(){
+			obj.add();
+		});
+		
+		$("#modifyBtn").bind("click",function(){
+			obj.modify();
+		});
+		
+		$("#exportBtn").bind("click",function(){
+			obj.exportExcel();
+		});
+		
+		//初始化日期
+		$('.date-picker').datepicker({
+			autoclose: true,
+			todayHighlight: true
+		});
+	}
+}
+
+
+
+$(function(){
+	obj.init();
+});

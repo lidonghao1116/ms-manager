@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiacer.modules.mybatis.dao.CourseInstitutionMapper" >
+  <resultMap id="BaseResultMap" type="com.jiacer.modules.mybatis.model.CourseInstitution" >
+    <id column="course_id" property="courseId" jdbcType="INTEGER" />
+    <id column="institution_id" property="institutionId" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_account" property="addAccount" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="modify_account" property="modifyAccount" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_sql">
+  	course_id,institution_id,add_time, add_account, modify_time,modify_account
+  </sql>
+  </mapper>

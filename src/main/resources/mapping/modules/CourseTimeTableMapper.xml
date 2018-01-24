@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiacer.modules.mybatis.dao.CourseTimeTableMapper">
+  <resultMap id="BaseResultMap" type="com.jiacer.modules.mybatis.model.CourseTimeTable">
+    <result column="learn_types_id" jdbcType="INTEGER" property="learntypesId" />
+    <result column="template_id" jdbcType="VARCHAR" property="templateId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+   	learn_types_id,template_id
+  </sql>
+  
+  <select id="getValueById" parameterType="map" resultType="java.lang.String">
+   SELECT 
+ 		template_id
+   FROM
+		course_time_table
+   WHERE 
+		learn_types_id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateValueByMap" parameterType="map">
+ 	update course_time_table
+    <set>
+      	<if test="templateId != null">
+        	template_id = #{templateId,jdbcType=VARCHAR},
+      	</if>
+    </set>
+    	where learn_types_id = #{id,jdbcType=INTEGER}
+ </update>
+  
+</mapper>

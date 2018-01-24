@@ -1,0 +1,174 @@
+[
+{
+  "id": "2",
+  "text": "教务管理",
+  "icon": "",
+  "url": "",
+  "menus": [{
+	  "id": "21",
+	  "text": "报名管理",
+	  "icon": "menu-icon fa bmgl",
+	  "url": "",
+	  "menus": [{
+	    "id": "211",
+		"text": "待审核",
+		"icon": "",
+		"url": "/orders/list?type=PEND_APPLY",
+		"target":"mainFrame"
+	  },{
+	    "id": "212",
+		"text": "已处理",
+		"icon": "",
+		"url": "/orders/list?type=SUCCESS_APPLY",
+		"target":"mainFrame"
+	  }]
+	},{
+	  "id": "22",
+	  "text": "学员管理",
+	  "icon": "menu-icon fa xygl",
+	  "url": "",
+	  "menus": [{
+	    "id": "221",
+		"text": "学员信息",
+		"icon": "",
+		"url": "/user/list",
+		"target":"mainFrame"
+	  }]
+	},{
+	  "id": "23",
+	  "text": "考务管理",
+	  "icon": "menu-icon fa kwgl",
+	  "url": "",
+	  "menus": [{
+	    "id": "231",
+		"text": "班级管理",
+		"icon": "",
+		"url": "/exams/list",
+		"target":"mainFrame"
+	  },{
+	    "id": "232",
+		"text": "成绩管理",
+		"icon": "",
+		"url": "/scores/list",
+		"target":"mainFrame"
+	  }]
+	},{
+	  "id": "24",
+	  "text": "课程管理",
+	  "icon": "menu-icon fa kcgl",
+	  "url": "",
+	  "menus": [{
+	    "id": "241",
+		"text": "课程管理",
+		"icon": "",
+		"url": "/courses/list",
+		"target":"mainFrame"
+	  },{
+	  	"id": "242",
+		"text": "上课时间管理",
+		"icon": "",
+		"url": "/coursesTime/list",
+		"target":"mainFrame"
+	  },{
+	    "id": "243",
+		"text": "报考学校",
+		"icon": "",
+		"url": "/schools/list",
+		"target":"mainFrame"
+	  }]
+	}]
+},{
+  "id": "3",
+  "text": "运营管理",
+  "icon": "",
+  "url": "",
+  "menus": [{
+	  "id": "32",
+	  "text": "销售管理",
+	  "icon": "menu-icon fa xshgl",
+	  "url": "",
+	  "menus": [{
+	  "id": "321",
+		"text": "学校简介",
+		"icon": "",
+		"url": "/intro/getSchoolIntroduce",
+		"target":"mainFrame"
+	  },{
+	  	"id": "322",
+		"text": "课程销售",
+		"icon": "",
+		"url": "/coursesPackage/list",
+		"target":"mainFrame"
+	  }]
+	},{
+	  "id": "33",
+	  "text": "合作商管理",
+	  "icon": "menu-icon fa hzsgl",
+	  "url": "",
+	  "menus": [{
+	    "id": "331",
+		"text": "合作商列表",
+		"icon": "",
+		"url": "/partners/list",
+		"target":"mainFrame"
+	  },{
+	    "id": "332",
+		"text": "提成管理",
+		"icon": "",
+		"url": "/brokerage/list",
+		"target":"mainFrame"
+	  }]
+	}]
+},{
+  "id": "4",
+  "text": "系统管理",
+  "icon": "",
+  "url": "",
+  "menus": [{
+	  "id": "41",
+	  "text": "参数设置",
+	  "icon": "",
+	  "url": "",
+	  "menus": [{
+	    "id": "411",
+		"text": "参数设置",
+		"icon": "",
+		"url": "/pages/index.jsp",
+		"target":"mainFrame"
+	  },{
+	    "id": "412",
+		"text": "常量设置",
+		"icon": "",
+		"url": "/pages/index.jsp",
+		"target":"mainFrame"
+	  }]
+	},{
+	  "id": "42",
+	  "text": "系统管理",
+	  "icon": "",
+	  "url": "",
+	  "menus": [{
+	    "id": "421",
+		"text": "用户管理",
+		"icon": "",
+		"url": "/system/user/list",
+		"target":"mainFrame"
+	  },{
+	    "id": "422",
+		"text": "角色管理",
+		"icon": "",
+		"url": "/pages/index.jsp",
+		"target":"mainFrame"
+	  },{
+	    "id": "423",
+		"text": "系统权限控制",
+		"icon": "",
+		"url": "/pages/index.jsp",
+		"target":"mainFrame"
+	  }]
+	}]
+}
+
+
+
+]

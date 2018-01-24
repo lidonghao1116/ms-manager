@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiacer.modules.mybatis.dao.ApplyOrdersMapper">
+    <resultMap id="BaseResultMap" type="com.jiacer.modules.mybatis.entity.ApplyOrdersEntity">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="course_id" jdbcType="INTEGER" property="courseId"/>
+        <result column="class_number" jdbcType="INTEGER" property="classNumber"/>
+        <result column="is_exam" jdbcType="VARCHAR" property="isExam"/>
+        <result column="is_staging" jdbcType="VARCHAR" property="isStaging"/>
+        <result column="is_deposit" jdbcType="VARCHAR" property="isDeposit"/>
+        <result column="is_deposit_clear" jdbcType="VARCHAR" property="isDepositClear"/>
+        <result column="school_fee" jdbcType="DECIMAL" property="schoolFee"/>
+        <result column="deposit" jdbcType="DECIMAL" property="deposit"/>
+        <result column="book_free" jdbcType="DECIMAL" property="bookFree"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
+        <result column="first_pay" jdbcType="DECIMAL" property="firstPay"/>
+        <result column="is_clear" jdbcType="VARCHAR" property="isClear"/>
+        <result column="order_time" jdbcType="TIMESTAMP" property="orderTime"/>
+        <result column="handle_time" jdbcType="TIMESTAMP" property="handleTime"/>
+        <result column="handler" jdbcType="INTEGER" property="handler"/>
+        <result column="modify_account" jdbcType="INTEGER" property="modifyAccount"/>
+        <result column="order_status" jdbcType="VARCHAR" property="orderStatus"/>
+        <result column="handle_status" jdbcType="VARCHAR" property="handleStatus"/>
+        <result column="package_id" jdbcType="INTEGER" property="packageId"/>
+        <result column="order_amount" jdbcType="DECIMAL" property="orderAmount"/>
+        <result column="order_type" jdbcType="VARCHAR" property="orderType"/>
+        <result column="class_time" jdbcType="VARCHAR" property="classTime"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="is_has_pf" jdbcType="VARCHAR" property="isHasPf"/>
+        <result column="makeup_fee" jdbcType="DECIMAL" property="makeupFee"/>
+        <result column="user_age" jdbcType="INTEGER" property="userAge"/>
+        <result column="retreat_fee" jdbcType="DECIMAL" property="retreatFee"/>
+        <result column="retreat_fee_date" jdbcType="TIMESTAMP" property="retreatFeeDate"/>
+        <result column="orter_fee" jdbcType="DECIMAL" property="orterFee"/>
+        <result column="stu_user_info_id" jdbcType="INTEGER" property="stuUserInfoId"/>
+        <result column="institution_info_id" jdbcType="INTEGER" property="institutionInfoId"/>
+        <result column="form_type" jdbcType="VARCHAR" property="formType"/>
+        <result column="class_id" jdbcType="INTEGER" property="classId"/>
+        <result column="authenticate_grade" jdbcType="VARCHAR" property="authenticateGrade"/>
+        <result column="source_type" jdbcType="VARCHAR" property="sourceType"/>
+        <result column="source_type_sec" jdbcType="VARCHAR" property="sourceTypeSec"/>
+        <result column="source_value" jdbcType="VARCHAR" property="sourceValue"/>
+        <result column="source_remarks" jdbcType="VARCHAR" property="sourceRemarks"/>
+        <result column="staging_clear_time" jdbcType="TIMESTAMP" property="stagingClearTime"/>
+        <result column="staging_clear_account" jdbcType="INTEGER" property="stagingClearAccount"/>
+        <result column="deposit_clear_time" jdbcType="TIMESTAMP" property="depositClearTime"/>
+        <result column="deposit_clear_account" jdbcType="INTEGER" property="depositClearAccount"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, course_id, class_number, is_exam, is_deposit,is_staging, is_deposit_clear,school_fee, deposit, book_free,
+        remarks, first_pay, is_clear, order_time, handle_time, handler, modify_account, order_status, handle_status,
+        package_id, order_amount, order_type, class_time, modify_time, order_no,is_has_pf,
+        makeup_fee,user_age,retreat_fee,retreat_fee_date,orter_fee,stu_user_info_id,institution_info_id,
+        form_type,class_id,source_type,source_type_sec,source_value,source_remarks,
+        staging_clear_time,staging_clear_account,deposit_clear_time,deposit_clear_account
+    </sql>
+
+    <sql id="Base_Column_List_2">
+        os.id, os.user_id, os.course_id, os.class_number, os.is_exam, os.is_staging, os.is_deposit,os.is_deposit_clear,os.school_fee, os.deposit,
+        os.book_free,
+        os.remarks, os.first_pay, os.is_clear, os.order_time, os.handle_time, os.handler,os.modify_account, os.order_status,
+        os.handle_status,
+        os.package_id, os.order_amount, os.order_type, os.class_time, os.modify_time,
+        os.order_no,os.is_has_pf,os.class_id,
+        os.makeup_fee,os.user_age,os.retreat_fee,os.retreat_fee_date,
+        os.orter_fee,os.stu_user_info_id,os.institution_info_id,os.form_type,
+        os.source_type,os.source_type_sec,os.source_value,os.source_remarks,
+        os.staging_clear_time,os.staging_clear_account,os.deposit_clear_time,os.deposit_clear_account
+    </sql>
+    <select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        s.id, s.user_id userId, s.course_id courseId, s.class_number classNumber,s.class_id classId, s.is_exam isExam,
+        s.is_staging isStaging, s.is_deposit_clear isDepositClear,s.is_deposit isDeposit,s.school_fee schoolFee, s.deposit, s.book_free bookFree, s.remarks, s.first_pay
+        firstPay,
+        s.is_clear isClear, s.order_time orderTime, s.handle_time handleTime, s.handler,s.modify_account, s.order_status orderStatus,
+        s.handle_status handleStatus, s.package_id packageId, s.order_amount orderAmount, s.order_type orderType,
+        s.class_time classTime, s.modify_time modifyTime, s.order_no orderNo,s.is_has_pf isHasPf,s.makeup_fee makeupFee,
+        s.user_age userAge,s.retreat_fee retreatFee,s.retreat_fee_date retreatFeeDate,s.orter_fee orterFee,
+        t.type_name typeName,e.class_name
+        className,s.stu_user_info_id,s.institution_info_id,s.form_type,t.authenticate_grade,
+        s.source_type,s.source_type_sec,s.source_value,s.source_remarks, 
+        s.staging_clear_time, s.staging_clear_account, s.deposit_clear_time, s.deposit_clear_account,
+        su.login_name as handlerName, su2.login_name as modifyName 
+        from apply_orders s 
+        left join learn_types t on s.course_id = t.id 
+        left join exam_class e on s.class_id = e.id 
+        left join sys_users su on s.handler = su.id
+        left join sys_users su2 on s.modify_account = su2.id
+        where s.id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+    <insert id="insert" parameterType="com.jiacer.modules.mybatis.entity.ApplyOrdersEntity">
+        insert into apply_orders
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userAge != null">
+                user_age,
+            </if>
+            <if test="courseId != null">
+                course_id,
+            </if>
+            <if test="classNumber != null">
+                class_number,
+            </if>
+            <if test="isExam != null">
+                is_exam,
+            </if>
+            <if test="isStaging != null">
+                is_staging,
+            </if>
+            <if test="isDepositClear != null">
+                is_deposit_clear,
+            </if>
+            <if test="isDeposit != null">
+                is_deposit,
+            </if>
+            <if test="schoolFee != null">
+                school_fee,
+            </if>
+            <if test="deposit != null">
+                deposit,
+            </if>
+            <if test="bookFree != null">
+                book_free,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+            <if test="firstPay != null">
+                first_pay,
+            </if>
+            <if test="isClear != null">
+                is_clear,
+            </if>
+            <if test="orderTime != null">
+                order_time,
+            </if>
+            <if test="handleTime != null">
+                handle_time,
+            </if>
+            <if test="handler != null">
+                handler,
+            </if>
+            <if test="modifyAccount != null">
+                modify_account,
+            </if>
+            <if test="orderStatus != null">
+                order_status,
+            </if>
+            <if test="handleStatus != null">
+                handle_status,
+            </if>
+            <if test="packageId != null">
+                package_id,
+            </if>
+            <if test="orderAmount != null">
+                order_amount,
+            </if>
+            <if test="orderType != null">
+                order_type,
+            </if>
+            <if test="classTime != null">
+                class_time,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="orderNo != null">
+                order_no,
+            </if>
+            <if test="isHasPf != null">
+                is_has_pf,
+            </if>
+            <if test="makeupFee != null">
+                makeup_fee,
+            </if>
+            <if test="retreatFee != null">
+                retreat_fee,
+            </if>
+            <if test="retreatFeeDate != null">
+                retreat_fee_date,
+            </if>
+            <if test="orterFee != null">
+                orter_fee,
+            </if>
+            <if test="stuUserInfoId != null">
+                stu_user_info_id,
+            </if>
+            <if test="institutionInfoId != null">
+                institution_info_id,
+            </if>
+            <if test="formType != null">
+                form_type,
+            </if>
+            <if test="classId != null">
+                class_id,
+            </if>
+            <if test="sourceType != null">
+                source_type,
+            </if>
+            <if test="sourceTypeSec != null">
+                source_type_sec,
+            </if>
+            <if test="sourceValue != null">
+                source_value,
+            </if>
+            <if test="sourceRemarks != null">
+                source_remarks,
+            </if>
+            <if test="stagingClearTime != null">
+                staging_clear_time,
+            </if>
+            <if test="stagingClearAccount != null">
+                staging_clear_account,
+            </if>
+            <if test="depositClearTime != null">
+                deposit_clear_time,
+            </if>
+            <if test="depositClearAccount != null">
+                deposit_clear_account,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="userAge != null">
+                #{userAge,jdbcType=INTEGER},
+            </if>
+            <if test="courseId != null">
+                #{courseId,jdbcType=INTEGER},
+            </if>
+            <if test="classNumber != null">
+                #{classNumber,jdbcType=INTEGER},
+            </if>
+            <if test="isExam != null">
+                #{isExam,jdbcType=VARCHAR},
+            </if>
+            <if test="isStaging != null">
+                #{isStaging,jdbcType=VARCHAR},
+            </if>
+            <if test="isDepositClear != null">
+                #{isDepositClear,jdbcType=VARCHAR},
+            </if>
+            <if test="isDeposit != null">
+                #{isDeposit,jdbcType=VARCHAR},
+            </if>
+            <if test="schoolFee != null">
+                #{schoolFee,jdbcType=DECIMAL},
+            </if>
+            <if test="deposit != null">
+                #{deposit,jdbcType=DECIMAL},
+            </if>
+            <if test="bookFree != null">
+                #{bookFree,jdbcType=DECIMAL},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="firstPay != null">
+                #{firstPay,jdbcType=DECIMAL},
+            </if>
+            <if test="isClear != null">
+                #{isClear,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="handleTime != null">
+                #{handleTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="handler != null">
+                #{handler,jdbcType=INTEGER},
+            </if>
+            <if test="modifyAccount != null">
+                #{modifyAccount,jdbcType=INTEGER},
+            </if>
+            <if test="orderStatus != null">
+                #{orderStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="handleStatus != null">
+                #{handleStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="packageId != null">
+                #{packageId,jdbcType=INTEGER},
+            </if>
+            <if test="orderAmount != null">
+                #{orderAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="orderType != null">
+                #{orderType,jdbcType=VARCHAR},
+            </if>
+            <if test="classTime != null">
+                #{classTime,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderNo != null">
+                #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="isHasPf != null">
+                #{isHasPf,jdbcType=VARCHAR},
+            </if>
+            <if test="makeupFee != null">
+                #{makeupFee,jdbcType=DECIMAL},
+            </if>
+            <if test="retreatFee != null">
+                #{retreatFee,jdbcType=DECIMAL},
+            </if>
+            <if test="retreatFeeDate != null">
+                #{retreatFeeDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orterFee != null">
+                #{orterFee,jdbcType=DECIMAL},
+            </if>
+            <if test="stuUserInfoId != null">
+                #{stuUserInfoId,jdbcType=INTEGER},
+            </if>
+            <if test="institutionInfoId != null">
+                #{institutionInfoId,jdbcType=INTEGER},
+            </if>
+            <if test="formType != null">
+                #{formType,jdbcType=INTEGER},
+            </if>
+            <if test="classId != null">
+                #{classId,jdbcType=INTEGER},
+            </if>
+            <if test="sourceType != null">
+                #{sourceType},
+            </if>
+            <if test="sourceTypeSec != null">
+                #{sourceTypeSec},
+            </if>
+            <if test="sourceValue != null">
+                #{sourceValue},
+            </if>
+            <if test="sourceRemarks != null">
+                #{sourceRemarks},
+            </if>
+            <if test="stagingClearTime != null">
+                #{stagingClearTime},
+            </if>
+            <if test="stagingClearAccount != null">
+                #{stagingClearAccount},
+            </if>
+            <if test="depositClearTime != null">
+                #{depositClearTime},
+            </if>
+            <if test="depositClearAccount != null">
+                #{depositClearAccount},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.jiacer.modules.mybatis.entity.ApplyOrdersEntity">
+        update apply_orders
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="courseId != null">
+                course_id = #{courseId,jdbcType=INTEGER},
+            </if>
+            <if test="userAge != null">
+                user_age = #{userAge,jdbcType=INTEGER},
+            </if>
+            <if test="classNumber != null">
+                class_number = #{classNumber,jdbcType=INTEGER},
+            </if>
+            <if test="isExam != null">
+                is_exam = #{isExam,jdbcType=VARCHAR},
+            </if>
+            <if test="isStaging != null">
+                is_staging = #{isStaging,jdbcType=VARCHAR},
+            </if>
+             <if test="isDepositClear != null">
+                is_deposit_clear = #{isDepositClear,jdbcType=VARCHAR},
+            </if>
+            <if test="isDeposit != null">
+                is_deposit = #{isDeposit,jdbcType=VARCHAR},
+            </if>
+            <if test="schoolFee != null">
+                school_fee = #{schoolFee,jdbcType=DECIMAL},
+            </if>
+            <if test="deposit != null">
+                deposit = #{deposit,jdbcType=DECIMAL},
+            </if>
+            <if test="bookFree != null">
+                book_free = #{bookFree,jdbcType=DECIMAL},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="firstPay != null">
+                first_pay = #{firstPay,jdbcType=DECIMAL},
+            </if>
+            <if test="isClear != null">
+                is_clear = #{isClear,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                order_time = #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="handleTime != null">
+                handle_time = #{handleTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="handler != null">
+                handler = #{handler,jdbcType=INTEGER},
+            </if>
+            <if test="modifyAccount != null">
+                modify_account = #{modifyAccount,jdbcType=INTEGER},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="handleStatus != null">
+                handle_status = #{handleStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="packageId != null">
+                package_id = #{packageId,jdbcType=INTEGER},
+            </if>
+            <if test="orderAmount != null">
+                order_amount = #{orderAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="orderType != null">
+                order_type = #{orderType,jdbcType=VARCHAR},
+            </if>
+            <if test="classTime != null">
+                class_time = #{classTime,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyAccount != null">
+                modify_account = #{modifyAccount,jdbcType=INTEGER},
+            </if>
+            <if test="orderNo != null">
+                order_no = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="isHasPf != null">
+                is_has_pf = #{isHasPf,jdbcType=VARCHAR},
+            </if>
+            <if test="makeupFee != null">
+                makeup_fee = #{makeupFee,jdbcType=DECIMAL},
+            </if>
+            <if test="retreatFee != null">
+                retreat_fee = #{retreatFee,jdbcType=DECIMAL},
+            </if>
+            <if test="retreatFeeDate != null">
+                retreat_fee_date = #{retreatFeeDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orterFee != null">
+                orter_fee = #{orterFee,jdbcType=DECIMAL},
+            </if>
+            <if test="stuUserInfoId != null">
+                stu_user_info_id = #{stuUserInfoId,jdbcType=INTEGER},
+            </if>
+            <if test="formType != null">
+                form_type = #{formType,jdbcType=VARCHAR},
+            </if>
+            <if test="classId != null">
+                class_id = #{classId,jdbcType=VARCHAR},
+            </if>
+            <if test="sourceType != null">
+                source_type = #{sourceType},
+            </if>
+            <if test="sourceTypeSec != null">
+                source_type_sec = #{sourceTypeSec},
+            </if>
+            <if test="sourceValue != null">
+                source_value = #{sourceValue},
+            </if>
+            <if test="sourceRemarks != null">
+                source_remarks = #{sourceRemarks},
+            </if>
+            <if test="stagingClearTime != null">
+                staging_clear_time = #{stagingClearTime},
+            </if>
+            <if test="stagingClearAccount != null">
+                staging_clear_account = #{stagingClearAccount},
+            </if>
+            <if test="depositClearTime != null">
+                deposit_clear_time = #{depositClearTime},
+            </if>
+            <if test="depositClearAccount != null">
+                deposit_clear_account = #{depositClearAccount},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="count" parameterType="map" resultType="int">
+        select
+        count(0)
+        from apply_orders o
+        <where>
+            institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+            <if test="handleStatus != null and handleStatus != ''">
+                and handle_status = #{handleStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="orderType != null and orderType != ''">
+                and order_type = #{orderType,jdbcType=VARCHAR}
+            </if>
+            <if test="packageId != null and packageId != ''">
+                and package_id = #{packageId,jdbcType=INTEGER}
+            </if>
+            <if test="courseId != null">
+                and course_id = #{courseId,jdbcType=INTEGER}
+            </if>
+            <if test="formType != null">
+                and form_type = #{formType,jdbcType=VARCHAR}
+            </if>
+            <if test="orderTypeList != null and orderTypeList.size()!=0">
+                and order_type in
+                <foreach item="item" index="index" collection="orderTypeList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="dateType==1">
+                <if test="startDate !=null and startDate !=''">
+                    and order_time &gt;= #{startDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="endDate !=null and endDate !=''">
+                    and order_time &lt;= #{endDate,jdbcType=TIMESTAMP}
+                </if>
+            </if>
+            <if test="dateType==2">
+                <if test="startDate !=null and startDate !=''">
+                    and handle_time &gt;= #{startDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="endDate !=null and endDate !=''">
+                    and handle_time &lt;= #{endDate,jdbcType=TIMESTAMP}
+                </if>
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_id in (select u.id from user_base_info u where u.user_name like #{userName,jdbcType=VARCHAR})
+            </if>
+            <if test="sourceType != null and sourceType != ''">
+                and source_type = #{sourceType,jdbcType=VARCHAR}
+            </if>
+            <if test="sourceTypeSec != null and sourceTypeSec != ''">
+                and source_type_sec = #{sourceTypeSec,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="getPageList" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_2"/>,ls.type_name typeName
+        from apply_orders os left join learn_types ls on os.course_id = ls.id
+        <where>
+            os.institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+            <if test="handleStatus != null and handleStatus != ''">
+                and os.handle_status = #{handleStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="orderType != null and orderType != ''">
+                and os.order_type = #{orderType,jdbcType=VARCHAR}
+            </if>
+            <if test="packageId != null and packageId != ''">
+                and os.package_id = #{packageId,jdbcType=INTEGER}
+            </if>
+            <if test="courseId != null">
+                and os.course_id = #{courseId,jdbcType=INTEGER}
+            </if>
+            <if test="formType != null">
+                and os.form_type = #{formType,jdbcType=VARCHAR}
+            </if>
+            <if test="orderTypeList != null and orderTypeList.size()!=0">
+                and os.order_type in
+                <foreach item="item" index="index" collection="orderTypeList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="dateType==1">
+                <if test="startDate !=null and startDate !=''">
+                    and os.order_time &gt;= #{startDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="endDate !=null and endDate !=''">
+                    and os.order_time &lt;= #{endDate,jdbcType=TIMESTAMP}
+                </if>
+            </if>
+            <if test="dateType==2">
+                <if test="ybmStartDate !=null and ybmStartDate !=''">
+                    and os.handle_time &gt;= #{ybmStartDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="ybmEndDate !=null and ybmEndDate !=''">
+                    and os.handle_time &lt;= #{ybmEndDate,jdbcType=TIMESTAMP}
+                </if>
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_id in (select u.id from user_base_info u where u.user_name like #{userName,jdbcType=VARCHAR})
+            </if>
+            <if test="sourceType != null and sourceType != ''">
+                and source_type = #{sourceType,jdbcType=VARCHAR}
+            </if>
+            <if test="sourceTypeSec != null and sourceTypeSec != ''">
+                and source_type_sec = #{sourceTypeSec,jdbcType=VARCHAR}
+            </if>
+        </where>
+        <if test="dateType==1">
+            order by os.order_time desc
+        </if>
+        <if test="dateType==2">
+            order by os.handle_time desc
+        </if>
+        <if test="offset !=null">
+            limit #{offset},#{pageSize}
+        </if>
+    </select>
+
+    <select id="countStu" parameterType="map" resultType="int">
+        select
+        count(0)
+        from
+        apply_orders os left join stu_user_info stu on os.stu_user_info_id = stu.id
+        left join learn_types lt on os.course_id = lt.id
+        left join course_package pe on os.package_id = pe.id
+        <where>
+            os.institution_info_id = #{institutionInfoId,jdbcType=VARCHAR}
+            <if test="handleStatus != null and handleStatus !=''">
+                and os.handle_status = #{handleStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="formType != null and formType != ''">
+                and os.form_type = #{formType,jdbcType=VARCHAR}
+            </if>
+            <if test="orderStatus != null and orderStatus != ''">
+                and os.order_status = #{orderStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="userName != null and userName != ''">
+                and stu.user_name like #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="sourceType != null and sourceType != ''">
+                and os.source_type = #{sourceType,jdbcType=VARCHAR}
+            </if>
+            <if test="sourceTypeSec != null and sourceTypeSec != ''">
+                and os.source_type_sec = #{sourceTypeSec,jdbcType=VARCHAR}
+            </if>
+            <if test="courseId != null and courseId != ''">
+                and os.course_id = #{courseId,jdbcType=VARCHAR}
+            </if>
+            <if test="startDate !=null and startDate !=''">
+                and os.order_time &gt;= #{startDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endDate !=null and endDate !=''">
+                and os.order_time &lt;= #{endDate,jdbcType=TIMESTAMP}
+            </if>
+
+            <if test="ybmStartDate !=null and ybmStartDate !=''">
+                and os.handle_time &gt;= #{ybmStartDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="ybmEndDate !=null and ybmEndDate !=''">
+                and os.handle_time &lt;= #{ybmEndDate,jdbcType=TIMESTAMP}
+            </if>
+
+            <if test="txStartDate !=null and txStartDate !=''">
+                and os.retreat_fee_date &gt;= #{txStartDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="txEndDate !=null and txEndDate !=''">
+                and os.retreat_fee_date &lt;= #{txEndDate,jdbcType=TIMESTAMP}
+            </if>
+
+            <if test="packageId != null and packageId != ''">
+                and os.package_id = #{packageId,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+    </select>
+
+    <select id="getPageListStu" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_2"/>,lt.type_name typeName,pe.package_name packageName,su.login_name handlerName, su2.login_name modifyName
+        from
+        apply_orders os left join stu_user_info stu on os.stu_user_info_id = stu.id
+        left join learn_types lt on os.course_id = lt.id
+        left join course_package pe on os.package_id = pe.id
+        left join sys_users su on os.handler = su.id
+        left join sys_users su2 on os.modify_account = su2.id
+        <where>
+            os.institution_info_id = #{institutionInfoId,jdbcType=VARCHAR}
+            <if test="handleStatus != null and handleStatus !=''">
+                and os.handle_status = #{handleStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="formType != null and formType != ''">
+                and os.form_type = #{formType,jdbcType=VARCHAR}
+            </if>
+            <if test="orderStatus != null and orderStatus != ''">
+                and os.order_status = #{orderStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="userName != null and userName != ''">
+                and stu.user_name like #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="sourceType != null and sourceType != ''">
+                and os.source_type = #{sourceType,jdbcType=VARCHAR}
+            </if>
+            <if test="sourceTypeSec != null and sourceTypeSec != ''">
+                and os.source_type_sec = #{sourceTypeSec,jdbcType=VARCHAR}
+            </if>
+            <if test="courseId != null and courseId != ''">
+                and os.course_id = #{courseId,jdbcType=VARCHAR}
+            </if>
+            <if test="startDate !=null and startDate !=''">
+                and os.order_time &gt;= #{startDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endDate !=null and endDate !=''">
+                and os.order_time &lt;= #{endDate,jdbcType=TIMESTAMP}
+            </if>
+
+            <if test="ybmStartDate !=null and ybmStartDate !=''">
+                and os.handle_time &gt;= #{ybmStartDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="ybmEndDate !=null and ybmEndDate !=''">
+                and os.handle_time &lt;= #{ybmEndDate,jdbcType=TIMESTAMP}
+            </if>
+
+            <if test="txStartDate !=null and txStartDate !=''">
+                and os.retreat_fee_date &gt;= #{txStartDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="txEndDate !=null and txEndDate !=''">
+                and os.retreat_fee_date &lt;= #{txEndDate,jdbcType=TIMESTAMP}
+            </if>
+
+            <if test="packageId != null and packageId != ''">
+                and os.package_id = #{packageId,jdbcType=VARCHAR}
+            </if>
+        </where>
+        <if test="orderTime != null">
+            order by os.order_time desc
+        </if>
+        <if test="orderTime == null">
+            order by os.handle_time desc
+        </if>
+
+
+        limit #{offset},#{pageSize}
+    </select>
+
+
+    <select id="get" parameterType="com.jiacer.modules.mybatis.entity.ApplyOrdersEntity" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from apply_orders
+        <where>
+            institution_info_id = #{institutionInfoId}
+            <if test="handleStatus != null and handleStatus != ''">
+                and handle_status = #{handleStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="orderType != null and orderType != ''">
+                and order_type = #{orderType,jdbcType=VARCHAR}
+            </if>
+            <if test="packageId != null and packageId != ''">
+                and package_id = #{packageId,jdbcType=INTEGER}
+            </if>
+            <if test="courseId != null and courseId != ''">
+                and course_id = #{courseId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+    <select id="findAllList" parameterType="com.jiacer.modules.mybatis.entity.ApplyOrdersEntity"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from apply_orders
+        <where>
+            institution_info_id = #{institutionInfoId}
+            <if test="userId != null">
+                and user_id = #{userId,jdbcType=INTEGER}
+            </if>
+            <if test="stuUserInfoId != null and stuUserInfoId != ''">
+                and stu_user_info_id = #{stuUserInfoId,jdbcType=INTEGER}
+            </if>
+            <if test="handleStatus != null and handleStatus != ''">
+                and handle_status = #{handleStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="orderType != null and orderType != ''">
+                and order_type = #{orderType,jdbcType=VARCHAR}
+            </if>
+            <if test="packageId != null and packageId != ''">
+                and package_id = #{packageId,jdbcType=INTEGER}
+            </if>
+            <if test="courseId != null and courseId != ''">
+                and course_id = #{courseId,jdbcType=INTEGER}
+            </if>
+            <if test="classNumber != null and classNumber != ''">
+                and class_number = #{classNumber,jdbcType=INTEGER}
+            </if>
+            <if test="classId != null and classId != ''">
+                and class_id = #{classId,jdbcType=INTEGER}
+            </if>
+            <if test="hstatusList != null and hstatusList.size()!=0">
+                and handle_status in
+                <foreach item="item" index="index" collection="hstatusList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="orderTypeList != null and orderTypeList.size()!=0">
+                and order_type in
+                <foreach item="item" index="index" collection="orderTypeList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="findAllCount" parameterType="com.jiacer.modules.mybatis.entity.ApplyOrdersEntity" resultType="int">
+        select
+        count(DISTINCT course_id)
+        from apply_orders
+        <where>
+            institution_info_id = #{institutionInfoId}
+            <if test="userId != null">
+                and user_id = #{userId,jdbcType=INTEGER}
+            </if>
+            <if test="stuUserInfoId != null">
+                and stu_user_info_id = #{stuUserInfoId,jdbcType=INTEGER}
+            </if>
+            <if test="handleStatus != null and handleStatus != ''">
+                and handle_status = #{handleStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="orderType != null and orderType != ''">
+                and order_type = #{orderType,jdbcType=VARCHAR}
+            </if>
+            <if test="packageId != null">
+                and package_id = #{packageId,jdbcType=INTEGER}
+            </if>
+            <if test="courseId != null">
+                and course_id = #{courseId,jdbcType=INTEGER}
+            </if>
+            <if test="classNumber != null">
+                and class_number = #{classNumber,jdbcType=INTEGER}
+            </if>
+            <if test="formType != null">
+                and form_type = #{formType,jdbcType=VARCHAR}
+            </if>
+            <if test="hstatusList != null and hstatusList.size()!=0">
+                and handle_status in
+                <foreach item="item" index="index" collection="hstatusList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="orderTypeList != null and orderTypeList.size()!=0">
+                and order_type in
+                <foreach item="item" index="index" collection="orderTypeList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <select id="getUserIdClassIdApplyOrders" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from apply_orders
+        <where>
+            <if test="institutionInfoId != null">
+                institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+            </if>
+            <if test="stuUserInfoId != null">
+                and stu_user_info_id = #{stuUserInfoId,jdbcType=INTEGER}
+            </if>
+            <if test="classId != null">
+                and class_id = #{classId,jdbcType=INTEGER}
+            </if>
+            <if test="handleStatus != null">
+                and handle_status = #{handleStatus}
+            </if>
+        </where>
+    </select>
+
+    <select id="getIsSchoolCourse" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from apply_orders
+        <where>
+            institution_info_id = #{institutionInfoId,jdbcType=VARCHAR}
+            and (handle_status in ("01","02") or form_type = "02")
+            <if test="stuUserInfoId != null and stuUserInfoId != ''">
+                and stu_user_info_id = #{stuUserInfoId,jdbcType=INTEGER}
+            </if>
+            <if test="courseId != null and courseId != ''">
+                and course_id = #{courseId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+    <select id="getAppSchool" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from apply_orders
+        <where>
+            user_id = #{userId,jdbcType=INTEGER}
+            and institutionInfo_id = #{institutionInfoId,jdbcType=INTEGER}
+            and course_id = #{courseId,jdbcType=INTEGER}
+        </where>
+    </select>
+
+    <select id="getIsBk" parameterType="map" resultType="int">
+        select
+        count(0)
+        from apply_orders
+        <where>
+            stu_user_info_id = #{stuUserInfoId,jdbcType=INTEGER}
+            and institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+            and course_id = #{courseId,jdbcType=INTEGER}
+            and form_type = #{formType,jdbcType=VARCHAR}
+        </where>
+    </select>
+
+    <select id="getPassedOrder" resultType="int">
+        select
+        count(1)
+        from
+        apply_orders
+        where
+        stu_user_info_id = #{stuUserInfoId}
+        and institution_info_id = #{institutionInfoId}
+        and course_id = #{courseId,jdbcType=INTEGER}
+        and handle_status = '02'
+    </select>
+
+</mapper>

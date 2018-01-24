@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiacer.modules.mybatis.dao.CoursesTimeDao">
+  <resultMap id="BaseResultMap" type="com.jiacer.modules.mybatis.entity.CoursesTimeEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="template_id" jdbcType="VARCHAR" property="templateId" />
+    <result column="template_name" jdbcType="VARCHAR" property="templateName" />
+    <result column="open_cycle" jdbcType="VARCHAR" property="openCycle" />
+    <result column="begin_time" jdbcType="VARCHAR" property="beginTime" />
+    <result column="end_time" jdbcType="VARCHAR" property="endTime" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="template_type" jdbcType="VARCHAR" property="templateType" />
+    <result column="institution_info_id" jdbcType="INTEGER" property="institutionInfoId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+   	id,template_id,template_name,open_cycle,begin_time,end_time,template_type,create_date,modify_date,institution_info_id
+  </sql>
+  <select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from courses_time_template
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="insert" parameterType="com.jiacer.modules.mybatis.entity.CoursesTimeEntity">
+    insert into courses_time_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="templateId != null">
+        template_id,
+      </if>
+      <if test="templateName != null">
+        template_name,
+      </if>
+      <if test="openCycle != null">
+        open_cycle,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="templateType != null">
+        template_type,
+      </if>
+       <if test="createDate != null">
+        create_date,
+      </if>
+       <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="institutionInfoId != null">
+        institution_info_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="templateId != null">
+        #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateName != null">
+        #{templateName,jdbcType=INTEGER},
+      </if>
+      <if test="openCycle != null">
+        #{openCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="templateType != null">
+        #{templateType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="institutionInfoId != null">
+        #{institutionInfoId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jiacer.modules.mybatis.entity.CoursesTimeEntity">
+    update courses_time_template
+    <set>
+      <if test="templateId != null">
+        template_id = #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateName != null">
+        template_name = #{templateName,jdbcType=INTEGER},
+      </if>
+      <if test="openCycle != null">
+        open_cycle = #{openCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="templateType != null">
+        template_type = #{templateType,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="institutionInfoId != null">
+        institution_info_id = #{institutionInfoId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="count" parameterType="map" resultType="int">
+  	select 
+    count(0)
+    from courses_time_template
+    <where>
+		institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+    	<if test="templateName != null and templateName!='' ">
+    		and template_name like  #{templateName,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  
+  <select id="countNum" parameterType="map" resultType="int">
+  	select 
+    max(id)
+    from courses_time_template 
+  </select>
+  
+  <select id="getPageList" parameterType="map" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from courses_time_template
+    <where>
+    	 institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+    	<if test="templateName != null and templateName!='' ">
+    		and template_name like  #{templateName,jdbcType=VARCHAR}
+    	</if>
+    </where>
+    order by id desc
+    limit #{offset},#{pageSize}
+  </select>
+  
+  <select id="getAllTimeYes" parameterType="map" resultMap="BaseResultMap">
+  	select DISTINCT begin_time,end_time from courses_time_template
+    <where>
+    	template_type = 1 and institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+    </where>
+    order by begin_time
+  </select>
+  
+  <select id="getTemplate" parameterType="map" resultMap="BaseResultMap">
+  	select id,template_name from courses_time_template
+    <where>
+    	template_type = 1 and institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+    </where>
+    order by begin_time
+  </select>
+  
+  <select id="getSKTemplate" parameterType="map" resultMap="BaseResultMap">
+
+     select 
+		te.*
+	from 
+		learn_types ls left join course_time_table ct on ls.id = ct.learn_types_id LEFT JOIN courses_time_template te on ct.template_id = te.id
+    <where>
+    	ls.id = #{id,jdbcType=INTEGER}
+    </where>
+  </select>
+
+  <select id="getTimeInfoByMap" parameterType="map" resultMap="BaseResultMap">
+  	SELECT 
+		template_name,id,institution_info_id
+	FROM
+		courses_time_template 
+	WHERE 
+		id= #{templateId,jdbcType=INTEGER}
+	AND
+	institution_info_id= #{institutionInfoId,jdbcType=INTEGER}
+  </select> 
+  
+</mapper>

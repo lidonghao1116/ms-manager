@@ -1,0 +1,1263 @@
+<html style="overflow-x:auto;overflow-y:auto;">
+<head>
+  <title>家策学校管理系统</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="author" content="http://jeesite.com/">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=8,IE=9,IE=10">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <link type="image/x-icon" href="/jiacerconsole/static/css/images/favicon.ico" rel="shortcut icon">
+
+  <!-- plugins jquery-->
+  <script src="/jiacerconsole/static/plugins/jquery/1.9.1/jquery-1.9.1.js" type="text/javascript"></script>
+  <script src="/jiacerconsole/static/plugins/jqGrid/i18n/grid.locale-cn.js"></script>
+  <script src="/jiacerconsole/static/plugins/jqGrid/jquery.jqGrid.min.js"></script>
+  <link rel="stylesheet" href="/jiacerconsole/static/plugins/jqGrid/jquery-ui.css">
+  <link rel="stylesheet" href="/jiacerconsole/static/plugins/jqGrid/ui.jqgrid.css">
+
+  <!-- plugins bootstrap -->
+  <script src="/jiacerconsole/static/plugins/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link href="/jiacerconsole/static/plugins/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- plugins font-awesome图标 -->
+  <link rel="stylesheet" href="/jiacerconsole/static/plugins/font-awesome/font-awesome.min.css">
+
+  <!-- plugins ace -->
+  <link rel="stylesheet" href="/jiacerconsole/static/plugins/ace/ace-fonts.css">
+  <link rel="stylesheet" href="/jiacerconsole/static/plugins/ace/ace.css" class="ace-main-stylesheet"
+        id="main-ace-style">
+  <link rel="stylesheet" href="/jiacerconsole/static/plugins/ace/ace-skins.css" id="ace-skins-stylesheet"
+        type="text/css">
+  <!-- plugins layer -->
+  <script src="/jiacerconsole/static/plugins/layer/layer.js"></script>
+  <link rel="stylesheet" href="/jiacerconsole/static/plugins/layer/skin/layer.css"
+        id="layui_layer_skinlayercss">
+  <!-- default.css 重写部分css -->
+  <link href="/jiacerconsole/static/css/default.css" type="text/css" rel="stylesheet">
+
+  <script type="text/javascript">var ctx = '/jiacerconsole', ctxStatic = '/jiacerconsole/static';</script>
+  <!-- 自定义js版本号 避免浏览器缓存 -->
+  <script src="/jiacerconsole/static/js/dateFormat.js"></script>
+  <script src="/jiacerconsole/static/js/config.js?version=20160406"></script>
+  <script src="/jiacerconsole/static/js/utils.js?version=20160407"></script>
+  <script src="/jiacerconsole/static/js/sidebar-menu.js?version=20160406"></script>
+
+
+  <meta name="decorator" content="default">
+  <link rel="stylesheet" href="/jiacerconsole/static/plugins/date-time/css/global.css">
+  <!-- favicon.ico图标 -->
+  <link type="image/x-icon" href="/jiacerconsole/static/css/images/favicon.ico" rel="shortcut icon">
+
+
+  <!-- plugins font-awesome图标 -->
+  <link rel="stylesheet" href="/jiacerconsole/static/plugins/font-awesome/font-awesome.min.css">
+
+
+  <script type="text/javascript">var ctx = '/jiacerconsole', ctxStatic = '/jiacerconsole/static';</script>
+
+
+  <meta name="decorator" content="blank">
+  <style type="text/css">
+    div#logo img {
+      margin-top: 8px;
+    }
+
+    div.main_m {
+      margin-left: 20%
+    }
+
+    div.main_m ul {
+      list-style: none;
+      margin: 0;
+    }
+
+    div.main_m li {
+      position: relative;
+      float: left;
+      height: 65px;
+      line-height: 65px;
+      width: 100px;
+      background: #6F9937;
+      text-align: center;
+      margin-left: 10px;
+    }
+
+    div.main_m li a {
+      color: white;
+      font-size: 16px;
+      display: block!important;
+    }
+
+    div.main_m li.active {
+      background: #6F9937;
+    }
+
+    div.main_m li img {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -8.5px;
+      display: none;
+      line-height: 0;
+    }
+
+    div.main_m li.active img {
+      display: block;
+    }
+
+    #logo ul {
+      list-style: none;
+    }
+
+    #logo li {
+      float: left;
+    }
+
+    .pname {
+      padding-top: 14px;
+      padding-left: 15px;
+      font-size: 18px;
+      color: white;
+    }
+
+    .verticalLine {
+      height: 45px;
+      width: 2px;
+      border-left: 2px #000 solid
+    }
+    #idInfoBox input{
+      width: 300px!important;
+    }
+    input[name="mobile"]{
+      background: transparent!important;
+      border: none!important;
+      padding:0!important;
+      color: #393939!important;
+    }
+  </style>
+</head>
+<body class="no-skin">
+
+<!--系统头部区域-->
+<div id="navbar" class="navbar navbar-default" style="cursor: pointer;">
+  <div class="navbar-container" id="navbar-container">
+    <!-- 窗口缩小是菜单 -->
+    <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+      <span class="sr-only">Toggle sidebar</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <!-- 系统logo部分 -->
+    <div class="navbar-header pull-left" id="logo">
+      <ul>
+        <li>
+          <!--
+          <img class="" alt="" src="http://192.168.31.233:8080/jiacerconsole/static/loginImg/logo.png">
+          -->
+          <img class="" alt="" src="/jiacerconsole/static/loginImg/logo.png">
+
+        </li>
+
+      </ul>
+    </div>
+    <!-- 右上侧登录用户信息 -->
+    <div class="main_m" id="first_menus">
+      <ul>
+        <li id="2" class="active"><a>教务管理</a><img src="/jiacerconsole/static/loginImg/selected.png"></li>
+        <li id="3"><a href="/jiacerconsole/index?pid=3">运营管理</a><img src="/jiacerconsole/static/loginImg/selected.png"></li>
+        
+        <li id="4"><a href="/jiacerconsole/index?pid=4">系统管理</a><img src="/jiacerconsole/static/loginImg/selected.png"></li>
+        
+        
+      </ul>
+    </div>
+    <!-- 右上侧登录用户信息 -->
+    <div class="navbar-buttons navbar-header pull-right" role="navigation">
+      <ul class="nav ace-nav">
+        <li class="light-blue">
+          <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+            <img class="nav-user-photo" src="/jiacerconsole/static/loginImg/account.png" alt="用户头像">
+            <span class="user-info">
+									欢迎
+								</span>
+            <i class="ace-icon fa fa-caret-down"></i>
+          </a>
+          <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+            <li>
+              <a href="#" data-toggle="modal" data-target="#myModal">
+                <i class="ace-icon fa fa-key"></i>
+                修改密码
+              </a>
+            </li>
+            <li>
+              <a href="/jiacerconsole/logout">
+                <i class="ace-icon fa fa-power-off"></i>
+                登出
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="main-container" id="main-container">
+  <div id="sidebar" class="sidebar responsive" data-sidebar="true">
+<!-- 左侧菜单 sidebar-menu.js菜单-->
+    <h1>教务管理</h1>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <ul class="nav nav-list nl-list1" id="menu">
+      <li class="open"><a target="_self" href="#" class="dropdown-toggle"><i class="menu-icon fa bmgl"></i><span
+              class="menu-text">报名管理</span><b class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
+        <ul class="submenu nav-show" style="display: block;">
+          <li><a target="mainFrame" href="/jiacerconsole/orders/list?type=PEND_APPLY"><i></i><span
+                  class="menu-text">待审核</span></a></li>
+          <li><a target="mainFrame" href="/jiacerconsole/orders/list?type=SUCCESS_APPLY"><i></i><span 
+                 class="menu-text">已处理</span></a>
+          </li>
+        </ul>
+      </li>
+      <li><a target="_self" href="#" class="dropdown-toggle"><i class="menu-icon fa xygl"></i><span 
+            class="menu-text">学员管理</span><b
+              class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
+        <ul class="submenu">
+          <li><a target="mainFrame" href="/jiacerconsole/user/list"><i></i><span 
+                class="menu-text">学员信息</span></a></li>
+        </ul>
+      </li>
+      <li><a target="_self" href="#" class="dropdown-toggle"><i class="menu-icon fa kwgl"></i><span class="menu-text">考务管理</span><b
+              class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
+        <ul class="submenu">
+          <li><a target="mainFrame" href="/jiacerconsole/exams/list"><i></i><span class="menu-text">班级管理</span></a></li>
+          <li><a target="mainFrame" href="/jiacerconsole/scores/list"><i></i><span class="menu-text">成绩管理</span></a>
+          </li>
+        </ul>
+      </li>
+      <li><a target="_self" href="#" class="dropdown-toggle"><i class="menu-icon fa kcgl"></i><span class="menu-text">课程管理</span><b
+              class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
+        <ul class="submenu">
+          <li><a target="mainFrame" href="/jiacerconsole/courses/list"><i></i><span class="menu-text">课程管理</span></a>
+          </li>
+          <li><a target="mainFrame" href="/jiacerconsole/coursesTime/list"><i></i><span class="menu-text">上课时间管理</span></a>
+          </li>
+          <li><a target="mainFrame" href="/jiacerconsole/schools/list"><i></i><span class="menu-text">合作学校</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- 收缩条 -->
+    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+      <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left"
+         data-icon2="ace-icon fa fa-angle-double-right"></i>
+<!-- 左侧菜单 sidebar-menu.js菜单结束-->
+    </div>
+  </div>
+  
+  <div class="main-content">
+    <div class="main-content-inner">
+      <!-- #section:basics/content.breadcrumbs -->
+      <div class="breadcrumbs" id="breadcrumbs">
+        <!-- 面包屑 开始 -->
+        <ul class="breadcrumb">
+          <li>教务管理&nbsp;&gt;&nbsp;报名管理&nbsp;&gt;&nbsp;待审核</li>
+        </ul>
+        <!-- 面包屑 结束 -->
+      </div>
+      <!-- 主内容 page-->
+      <iframe id="mainFrame" name="mainFrame" src="" frameborder="no" width="100%" height="100%"
+              onLoad="iFrameHeight()">
+      </iframe>
+      <div class="no-skin" id="readCardFrame">
+        <form class="form-horizontal" id="formCard">
+          <ul id="breadcrumb" style="display: none">
+            <li>教务管理&gt;报名管理&gt;待审核</li>
+          </ul>
+          <div class="frame">
+            <div class="content">
+              <div class="content-area">
+                <div class="infoBlock" id="idInfoBox">
+                  <h1 class="title">身份信息</h1>
+                  <div class="ib-content clearfix">
+                    <div id="idPhoto">
+                      <ul>
+                        <li>
+                          <img src="/jiacerconsole/static/loginImg/avatar.png" alt="" class="idImage">
+                          <input id="headImage" type="hidden" name="headImage" />
+                        </li>
+                        <li>
+                          <button type="button" id="readCardBtn">读取身份证</button>
+                        </li>
+                      </ul>
+                    </div>
+                    <table style="width: 38%;">
+                      <tbody>
+                      <tr>
+                        <td>身份证号：</td>
+                        <td class="secTd">
+                          <input type="text" name="certNo" size="20" value="" placeholder="请通过身份证读取器读取" readonly id="certNo"/>
+                          <!--<input type="text" id="certNo" name="certNo" value="310227198709290018"/>-->
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>姓名：</td>
+                        <td class="secTd">
+                          <!--<input type="text" id="userName" name="userName" value="刘驰明"/>-->
+                          <input type="text" size="20" name="userName" readonly value="" id="userName"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>年龄：</td>
+                        <!--<td class="secTd">30</td>-->
+                        <td class="secTd"><input type="text" size="20" name="age" readonly /></td>
+                      </tr>
+                      <tr>
+                        <td>籍贯：</td>
+                        <td class="secTd"><input type="text" size="20" name="birthplace" readonly /></td>
+                        <!--<td class="secTd">
+                        上海
+                        </td>-->
+
+                      </tr>
+                      <tr>
+                        <td>发证机构：</td>
+                        <td class="secTd">
+                          <input type="text" size="50" name="issueOrg" readonly />
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <table style="width:38%;">
+                      <tbody>
+                      <tr>
+                        <td></td>
+                        <td class="secTd"></td>
+                      </tr>
+                      <tr>
+                        <td>性别：</td>
+                        <!--<td class="secTd">男</td>-->
+
+                        <td class="secTd">
+                          <input type="text" size="20" name="sex" readonly />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>民族：</td>
+                        <td class="secTd">
+                          <input type="text" size="20" name="nation" readonly id="nation"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>户籍地址：</td>
+                        <td class="secTd">
+                          <!--<input type="text" id="address" name="address" value="啥地方"/>--><input type="text" size="40" name="address" readonly id="address"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>有效期至：</td>
+                        <td class="secTd">
+                          <input type="text" size="30" name="expiredTime" readonly />
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="infoBlock">
+                  <h1 class="title">基本信息</h1>
+                  <div class="ib-content clearfix">
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td>手机号码：</td>
+                        <td class="secTd">
+                          <input type="text" readonly name="mobile">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>学历：</td>
+                        <td class="secTd">
+                          <!-- 大学本科 -->
+                          <select name="education" id="education">
+                            <option value="">--请选择--</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>紧急联系人：</td>
+                        <td class="secTd"><input type="text" id="contacts" name="contacts" value="">
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td>是否交社保：</td>
+                        <td class="secTd">
+                          <div class="radio_box">
+                            <label for="yes_sp">是</label>
+                            <input type="radio" id="yes_sp" name="isHasPf" value="1" class="isHasPf">
+                            <div class="circle-box">
+                              <span class="circle"></span>
+                            </div>
+                          </div>
+                          <div class="radio_box">
+                            <label for="no_sp">否</label>
+                            <input type="radio" id="no_sp" name="isHasPf" value="0" class="isHasPf">
+                            <div class="circle-box">
+                              <span class="circle"></span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>联系地址：</td>
+                        <td class="secTd">
+                          <input type="text" id="contactAddress" name="contactAddress" value="">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>紧急联系人电话：</td>
+                        <td class="secTd"><input type="text" id="contactPhone" name="contactPhone" value=""></td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="infoBlock">
+                  <h1 class="title">来源信息</h1>
+                  <div class="ib-content clearfix">
+                    <table style="width: 100%;">
+                      <tbody>
+                      <tr>
+                        <td>来源：</td>
+                        <td class="secTd">
+                          <select id="sourceType" name="sourceType">
+
+                          </select>
+                          <select id="sourceTypeSec" name="sourceTypeSec">
+                            <option value="">---请选择---</option>
+                            <!--<option value="01">家政公司</option>
+                            <option value="02">合作机构</option>
+                            <option value="03">大V</option>-->
+                          </select>
+                          <div id="sourceValueDiv" style="display: inline-block"><!--<select
+                                  class="chosen-select form-control" id="sourceValue">-->
+                           <!-- <option value="">-&#45;&#45;请选择-&#45;&#45;</option>-->
+
+                          </select></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>备注：</td>
+                        <td class="secTd" style="padding-bottom: 10px;"><textarea id="sourceRemarks"
+                                                                                  name="sourceRemarks" rows=""
+                                                                                  cols=""></textarea></td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="infoBlock">
+                  <h1 class="title">报考信息</h1>
+                  <div class="ib-content clearfix">
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td>产品名称：</td>
+                        <td class="secTd" id="productName"></td>
+                      </tr>
+                      <tr>
+                        <td>课程名称：</td>
+                        <td class="secTd" id="typeName">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>上课时间：</td>
+                        <td class="secTd">
+                          <select id="classTime" name="classTime">
+                            <option vlaue="">-请选择上课时间-</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>   
+                        <td>是否考试：</td>
+                        <td class="secTd">
+                          <div class="radio_box">
+                            <label for="yes_ex">是</label>
+                            <input type="radio" id="yes_ex" name="isExam" value="1" checked="checked">
+                            <div class="circle-box active">
+                              <span class="circle"></span>
+                            </div>
+                          </div>
+                          <div class="radio_box">
+                            <label for="no_ex">否</label>
+                            <input type="radio" id="no_ex" name="isExam" value="0">
+                            <div class="circle-box">
+                              <span class="circle"></span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td></td>
+                        <td class="secTd">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>课程等级：</td>
+                        <td class="secTd" id="authenticateGrade">
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>班级标号：</td>
+                        <td class="secTd">
+                          <select id="classNumber1" name="classNumber1">
+                            <option value="">--请选择--</option>
+                          </select>
+                          <div>
+                           <span style="color:#ccc;font-size:12px">（新建班级标号请到：考务管理 ->班级管理）</span>
+                          </div>
+                    
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="infoBlock">
+                  <h1 class="title">收费信息</h1>
+                  <div class="ib-content clearfix">
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td>学费：</td>
+                        <td class="secTd"><input type="text" id="schoolFee" name="schoolFee" value="" onblur="checkschoolFee()"> 元</td>
+                      </tr>
+                      <!-- 
+                      <tr>
+                        <td>书费：</td>
+                        <td class="secTd"><input type="text" id="bookFree" name="bookFree" value=""> 元</td>
+                      </tr>
+                       -->
+                       <tr>
+                       <td>押金费：</td>
+                        <td class="secTd">
+                          <div class="radio_box">
+                            <label for="no">否</label>
+                            <input type="radio" checked="checked" name="isDeposit" id="no_deposit"  value="0" onclick="noDepositChecked(this);">
+                            <div class="circle-box">
+                              <span class="circle"></span>
+                            </div>
+                          </div>      
+                          <div class="radio_box">
+                            <label for="yes">是</label>
+                            <input type="radio" id="is_deposit" name="isDeposit" value="1"  onclick="depositChecked(this);" >
+                            <div class="circle-box">
+                              <span class="circle"></span>
+                            </div>                           
+                          </div>                       
+                             <input style="display:none;" name="deposit" type="text" id="deposit" onblur="checkdeposit()"/>
+                             <!-- 根据是否押金对押金是否已结清赋值，默认值为1 -->
+                             <input style="display:none;" name="isDepositClear" type="text" id="isDepositClear" value="1"/>
+                             
+                        </td>
+                       </tr>
+                      </tbody>
+                    </table>
+                    <table>
+                      <tbody>
+                      <tr>
+                        <td>分期首付款：</td>
+                        <td class="secTd">
+                          <div class="radio_box">
+                            <label for="no">否</label>
+                            <input type="radio" checked="checked" name="isStaging"  id="no_staging" value="0" onclick="noFirstPayChecked(this);" >
+                            <div class="circle-box">
+                              <span class="circle"></span>
+                            </div>
+                          </div>
+                                  
+                          <div class="radio_box">
+                            <label for="yes">是</label>
+                            <input type="radio" id="is_staging" name="isStaging"  value="1" onclick="firstPayChecked(this);">
+                            <div class="circle-box">
+                              <span class="circle"></span>
+                            </div>
+                          </div>
+                           <input style="display:none;" name="firstPay" type="text" id="firstPay" onblur="checkfirst_pay()"/>
+                           <!-- 根据是否首付款对是否已结清,默认已结清 -->
+                           <input style="display:none;" name="isClear" type="text" id="isClear" value="1" />
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="btnCase btnCase_sp clearfix">
+                  <!--<a target="mainFrame" href="/jiacerconsole/orders/list?type=PEND_APPLY"  type="button">返回</a>-->
+                  <button type="button" class="bc-cancel" id="goBack" onclick="">返回</button>
+                  <button id="unpassBtn" class="bc-cancel" type="button" onclick="">不通过</button>
+                  <button class="bc-confirm" id="passBtn" type="button" onclick="">通过</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input id="id" value="" type="hidden">
+          <input id="courId" value="" type="hidden">
+          <input id="sourceValueOld" value="" type="hidden" name="sourceValueOld">
+          <input id="sourceSecOld" value=" " type="hidden">
+          <input id="sign" value=" " name="sign" type="hidden">
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- 页脚-->
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-content">
+						<span class="bigger-120">
+						<a href="javascript:void(0)">家策联盟</a>
+						© 2015-2016 - Powered By 家策联盟 V1.0.0
+						</span>
+      </div>
+    </div>
+  </div>
+  <!-- 直接返回顶部 -->
+  <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+  </a>
+</div>
+
+<div class="modal fade bs-example-modal-sm in" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">修改密码</h4>
+      </div>
+      <div class="modal-body">
+        <form id="inputForm" method="post" class="form-horizontal dr-form-bordered">
+          <div class="form-group-line"></div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">旧密码:<span class="dr-asterisk">*</span></label>
+            <div class="col-md-5">
+              <input id="oldPassword" maxlength="10" value="" onkeyup="value=value.replace(/[\u4e00-\u9fa5]/g,'')"
+                     class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">新密码:<span class="dr-asterisk">*</span></label>
+            <div class="col-md-5">
+              <input id="password" type="text" maxlength="10" value=""
+                     onkeyup="value=value.replace(/[\u4e00-\u9fa5]/g,'')" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">确认密码:<span class="dr-asterisk">*</span></label>
+            <div class="col-md-5">
+              <input id="repeatPassword" type="text" maxlength="10" value=""
+                     onkeyup="value=value.replace(/[\u4e00-\u9fa5]/g,'')" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-8 panel-toolbar text-center dr-slash-text">
+              <input id="btnSubmit" class="btn btn-primary" type="button" value="保 存" onclick="user.modifyPwd();">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ace scripts -->
+<!-- 验证学费金额是否正确 -->
+<script>
+ function checkschoolFee(){
+	var schoolFee = document.getElementById('schoolFee');
+	var number= schoolFee.value;
+    if(!(/^\d{1,6}$/.test(number))){ 
+        layer.open({
+            title: '学费款金额格式错误',
+            content: '学费金额应为小于六位的纯数字，请重新填写'
+          });
+        return true; 
+    }
+       
+	}
+</script>
+<!-- 押金相关 -->
+<!-- 是否显示押金框 ，以及押金是否已付清状态-->
+<script>
+function depositChecked (chk) {
+	var deposit = document.getElementById('deposit');
+	var isDepositClear=document.getElementById('isDepositClear');
+	if (chk.checked) {
+	deposit.style.display='inline-block';
+	isDepositClear.value='0';
+     	}
+	}
+</script>
+<!-- 不显示押金框时，同时把押金赋值为0 -->
+<script>
+function noDepositChecked (chk) {
+	var deposit = document.getElementById('deposit');
+	var isDepositClear=document.getElementById('isDepositClear');
+	if (chk.checked) {
+	deposit.style.display='none';
+	deposit.value=0;
+	isDepositClear.value='1';
+     	}
+	}
+</script>
+<!-- 验证押金金额是否正确 -->
+<script>
+ function checkdeposit() {
+	var deposit = document.getElementById('deposit');
+	var checkBox=document.getElementById('is_deposit');
+	if (checkBox.checked){
+		var number= deposit.value;
+        if(!(/^\d{1,6}$/.test(number))){ 
+            layer.open({
+                title: '押金金额格式错误',
+                content: '押金应为小于六位的纯数字，请重新填写'
+              });
+           return true; 
+        } 
+     	}
+	}
+</script>
+
+
+<!-- 首付款相关 -->
+<!-- 是否显示首付款框 ,以及是否已结清-->
+<script>
+function firstPayChecked (chk) {
+	var first_pay = document.getElementById('firstPay');
+	var isClear=document.getElementById('isClear');
+	if (chk.checked) {
+		first_pay.style.display='inline-block';
+		isClear.value='0';
+     	}
+	}
+</script>
+  <!-- 不显示首付款框时，同时把首付款赋值为0 -->
+<script>
+function noFirstPayChecked (chk) {
+	var first_pay = document.getElementById('firstPay');
+	var isClear=document.getElementById('isClear');
+	if (chk.checked) {
+		first_pay.style.display='none';
+		first_pay.value=0;
+		isClear.value='1';
+     	}
+	}
+</script>
+
+<!-- 验证首付款金额是否正确 -->
+<script>
+ function checkfirst_pay() {
+	var first_pay = document.getElementById('firstPay');
+	var checkBox=document.getElementById('is_staging');
+	if (checkBox.checked){
+		var number= first_pay.value;
+        if(!(/^\d{1,6}$/.test(number))){ 
+            layer.open({
+                title: '首付款金额格式错误',
+                content: '首付款金额应为小于六位的纯数字，请重新填写'
+              });
+            return true; 
+        } 
+     	}
+	}
+</script>
+<script>
+  var sexArr= new Array("未知","男","女");
+  var ethnicArr = {
+    "01": "汉族",
+    "02": "蒙古族", "03": "回族",
+    "04": "藏族", "05": "维吾尔族", "06": "苗族",
+    "07": "彝族", "08": "壮族", "09": "布依族",
+    "10": "朝鲜族", "11": "满族", "12": "侗族",
+    "13": "瑶族", "14": "白族", "15": "土家族",
+    "16": "哈尼族", "17": "哈萨克族", "18": "傣族",
+    "19": "黎族", "20": "傈僳族", "21": "佤族",
+    "22": "畲族", "23": "高山族", "24": "拉祜族",
+    "25": "水族", "26": "东乡族", "27": "纳西族",
+    "28": "景颇族", "29": "柯尔克孜族", "30": "土族",
+    "31": "达斡尔族", "32": "仫佬族", "33": "羌族",
+    "34": "布朗族", "35": "撒拉族", "36": "毛难族",
+    "37": "仡佬族", "38": "锡伯族", "39": "阿昌族",
+    "40": "普米族", "41": "塔吉克族", "42": "怒族",
+    "43": "乌孜别克族", "44": "俄罗斯族", "45": "鄂温克族",
+    "46": "德昂族", "47": "保安族", "48": "裕固族",
+    "49": "京族", "50": "塔塔尔族", "51": "独龙族",
+    "52": "鄂伦春族", "53": "赫哲族", "54": "门巴族",
+    "55": "珞巴族", "56": "基诺族"
+  }
+  var CityArray = {
+    11: "北京",
+    12: "天津",
+    13: "河北",
+    14: "山西",
+    15: "内蒙古",
+    21: "辽宁",
+    22: "吉林",
+    23: "黑龙江",
+    31: "上海",
+    32: "江苏",
+    33: "浙江",
+    34: "安徽",
+    35: "福建",
+    36: "江西",
+    37: "山东",
+    41: "河南",
+    42: "湖北",
+    43: "湖南",
+    44: "广东",
+    45: "广西",
+    46: "海南",
+    50: "重庆",
+    51: "四川",
+    52: "贵州",
+    53: "云南",
+    54: "西藏",
+    61: "陕西",
+    62: "甘肃",
+    63: "青海",
+    64: "宁夏",
+    65: "新疆",
+    71: "台湾",
+    81: "香港",
+    82: "澳门",
+    91: "国外"
+  }
+  var form1 = byId("formCard");
+  function byId(id) {
+    return document.getElementById(id);
+  }
+  $(function() {
+	  
+    $(".navbar-buttons").click(function () {
+      window.location.href="/jiacerconsole/index"
+    })
+
+    $("#sourceType").bind('change', function() {
+      $("#sourceValueDiv").html("");
+      var id = $(this).find("option:selected").attr("id");
+      initSourceSec(id, '');
+    });
+    $("#goBack").click(function () {
+      window.location.href="/jiacerconsole/index"
+    })
+    $("#sourceTypeSec").bind('change', function() {
+      var pid = GetSelectValue("#sourceType");
+      if (pid == '01') {
+        var id = GetSelectValue("#sourceTypeSec");
+        initSourceValue(id, '');
+      } else if (pid == '02') {
+        $("#sourceValueDiv").html("");
+        $("#sourceValueDiv").append(sourceValueInput);
+      }
+    });
+    var url=window.location.href;
+    var params=url.split("?")[1]
+    console.log(params);
+//个人信息返显
+    initUserInfo(params);
+
+    $(".radio_box input").click(function() {
+      $(this).siblings(".circle-box").addClass("active");
+      $(this).parent().siblings(".radio_box").children(".circle-box").removeClass("active");
+    })
+    $(".radio_box input").each(function() {
+      if ($(this).is(":checked")) {
+        $(this).siblings(".circle-box").addClass("active");
+        $(this).parent().siblings(".radio_box").children(".circle-box").removeClass("active");
+      }
+    })
+  })
+  function initUserInfo(params) {
+    $.ajax({
+      url: "/jiacerconsole/orders/apply/form?"+params,
+      type: "get",
+      data: {},
+      dataType: "json",
+      success:function success(data) {
+        if(data.success){
+          console.log(data)
+          var dataJD=data.jsonData;
+          var eduList=dataJD.educationList||"";
+          var staff=dataJD.stuUserInfo;
+          var model=dataJD.model;
+          var courseClassList=dataJD.courseClassList||"";
+          var coursesTimeList=dataJD.coursesTimeList||"";
+          var goOnClassTimeId=dataJD.goOnClassTimeId||"";
+          var html01="";
+          var html02="";
+          var html03="";
+          $.each(eduList,function (k,v) {
+            html01+=`
+            <option value="${v.id}">${v.value}</option>
+`
+          })
+          $.each(courseClassList,function (k,v) {
+            html02+=`
+            <option value="${v.id}">${v.classNumber}</option>
+`
+          })
+          $.each(coursesTimeList,function (k,v) {
+            html03+=`
+            <option value="${v.id}">${v.templateName}</option>
+`
+          })
+          $("#classTime").append(html03)
+          $("#classTime").find("option[value='"+goOnClassTimeId+"']").attr("selected",true)
+          $("#classNumber1").append(html02);
+          $("#education").append(html01);
+          var eduCode=staff.education;
+          console.log(eduCode);
+//          console.log($("#education"));
+          $("#education").find("option[value='"+eduCode+"']").attr("selected",true)
+//          $("#education").find("option[value='06']").attr("selected",true)
+          form1.id.value = model.id||"";
+          console.log(staff.mobile)
+          form1.mobile.value = staff.mobile||"";
+//          form1.education.value = staff.education||"";
+          form1.contacts.value = staff.contacts||"";
+          form1.address.value = staff.address||"";
+//          form1.isHasPf.value = staff.isHasPf;
+          var isHasPf= staff.isHasPf||0;
+
+          $(".isHasPf[value='"+isHasPf+"']").prop('checked',true);
+          $(".isHasPf[value='"+isHasPf+"']").next(".circle-box").addClass("active")
+          form1.contactAddress.value = staff.contactAddress||"";
+          form1.contactPhone.value = staff.contactPhone||"";
+          form1.certNo.value = staff.certNo||"";
+          form1.userName.value = staff.userName||"";
+          form1.sex.value = sexArr[staff.sex]||"";
+          form1.birthplace.value = staff.birthplace||"";
+          form1.age.value = staff.age||"";
+          var ethnic=ethnicArr[staff.nation]||"";
+          form1.nation.value = ethnic;
+          form1.issueOrg.value = staff.issueOrg||"";
+          form1.expiredTime.value = staff.expiredTime||"";
+          form1.sourceType.value = staff.sourceType||"";
+          form1.headImage.value = staff.headImage||"";
+          $(".idImage").attr('src',staff.headImage)
+          var sourceType=staff.sourceType||"";
+          var sourceTypeSec=staff.sourceTypeSec||"";
+//          form1.sourceValue.value = staff.sourceValue||"";
+          form1.sourceRemarks.value = staff.sourceRemarks||"";
+          form1.sourceValueOld.value = staff.sourceValue||"";
+          $("#productName").text(model.productName);
+          $("#typeName").text(model.typeName);
+          $("#authenticateGrade").text(model.authenticateGrade);
+          initSource(0,sourceType,sourceTypeSec);
+          var pid = GetSelectValue("#sourceType");
+          var id = GetSelectValue("#sourceTypeSec");
+          console.log(pid,id)
+          initPage();
+        }else{
+          console.log(data.msg);
+        }
+      },
+      error:function (e) {
+        console.log(e);
+      }
+    })
+  }
+  function initPage() {
+    var sourceSecValue = $("#sourceSecOld").val();
+    var sourceValue = $("#sourceValueOld").val();
+//    var id = $("#sourceType").find("option:selected").attr("id");
+//    alert(id);
+    //alert(sourceSecValue);
+    //alert(sourceValue);
+
+//    initSourceSec(id, sourceSecValue);
+    var pid = GetSelectValue("#sourceType");
+    console.log(pid);
+    if (pid == '01') {
+      var id = GetSelectValue("#sourceTypeSec");
+      initSourceValue(id, sourceValue);
+    } else if (pid == '02') {
+      $("#sourceValueDiv").html("");
+      $("#sourceValueDiv").append(sourceValueInput);
+      $("#sourceTypeValue").val(sourceValue);
+    }
+  }
+//ifram隐藏
+  $("#mainFrame").hide();
+//  iframe显示
+  $(".nav-list ").click(function () {
+    $("#mainFrame").show();
+    $("#readCardFrame").hide();
+  })
+//读卡操作
+  const path = require('path');
+  const fs = require('fs');
+  $("#readCardBtn").click(function () {
+    readCard();
+  })
+  function readCard() {
+    var card = __dirname.split("electron.asar")[0];
+    var cardUrl = path.join(card, 'app.asar/card_read.js').replace("/", "\\");
+    console.log(cardUrl);
+    var card_read = require(cardUrl);
+    var obj = card_read.readIdInfo();
+    console.log(process.cwd());
+    var imgPath = path.join(`${process.cwd()}`, "/resources/app/card/zp.bmp");
+    console.log(JSON.stringify(obj));
+
+    if(obj===65||obj===272||obj==-1002||obj==-1001){
+      layer.open({
+        content: '未读取到身份证，请移走身份证并重新放置后读取'
+      });
+//      form1.headImage.value="";
+//      form1.userName.value = "";
+//      form1.sex.value = "";
+//      form1.nation.value = "";
+//      form1.address.value = "";
+//      form1.idnum.value = "";
+//      form1.issueOrg.value = "";
+//      form1.expiredTime.value = "";
+//      form1.age.value = "";
+//      form1.birthplace.value = "";
+//      $('.idImage').attr('src','/jiacerconsole/static/loginImg/avatar.png');
+    }else {
+
+      console.log(obj.ethnicCode)
+      var ethnic=ethnicArr[obj.ethnicCode];
+      var sex=sexArr[obj.sexCode];
+      var certNo=form1.certNo.value;
+      var idNum=obj.idNumber;
+      console.log(certNo);
+      if (idNum!=certNo&&certNo!=""){
+        layer.open({
+          title: ''
+          ,content: '学员信息冲突，请确认后再继续'
+        });
+        return;
+      }
+      var params={
+        certNo:obj.idNumber,
+        expiredTime:obj.expiryDate,
+        userName:obj.name
+      }
+
+      form1.userName.value = obj.name;
+      form1.sex.value = sex;
+      form1.nation.value = ethnic;
+      form1.address.value = obj.address;
+      form1.certNo.value = obj.idNumber;
+      form1.issueOrg.value = obj.issuer;
+      var expiryDate=obj.expiryDate;
+
+      var e1 = expiryDate.substr(0, 4);
+      var e2 = expiryDate.substr(4, 2);
+      var e3 = expiryDate.substr(6, 2);
+      var expiry = e1 + "-" + e2 + "-" + e3;
+      console.log(expiry)
+      form1.expiredTime.value = expiry;
+      var birthday = obj.birthDate;
+      var b1 = birthday.substr(0, 4);
+      var b2 = birthday.substr(4, 2);
+      var b3 = birthday.substr(6, 2);
+      var birth = b1 + "/" + b2 + "/" + b3;
+      var date = new Date(birth);
+      var age = new Date().getFullYear() - date.getFullYear();
+      $("input[name='age']").val(age);
+      //				判断地区
+      var cityCode = parseInt($("input[name='certNo']").val().substr(0, 2));
+      $("input[name='birthplace']").val(CityArray[cityCode]);
+      var certNo = $("input[name='certNo']").val();
+      var certImage = $("input[name='headImage']").val();
+      var staffName = $("input[name='userName']").val();
+      var nation = $("input[name='nation']").val();
+      var houseAddress = $("input[name='address']").val();
+      var nativePlace = $("input[name='birthplace']").val();
+      fs.readFile(imgPath, (err, data) => {
+        //get image file extension name
+        let extensionName = path.extname(imgPath);
+
+        //convert image file to base64-encoded string
+        let base64Image = new Buffer(data, 'binary').toString('base64');
+//      console.log(base64Image);
+        //combine all strings
+        let imgSrcString = `data:image/${extensionName.split('.').pop()};base64,${base64Image}`;
+        $(".idImage").attr("src", imgSrcString)
+        $("#headImage").val(imgSrcString)
+      })
+    }
+  }
+/*  function checkIdCard() {
+    console.log("ok");
+    $.ajax({
+      url: "/jiacerconsole/user/idcard/read",
+      type: "post",
+      data:$("#formCard").serialize(),
+      dataType: "json",
+      success:function success(data) {
+        if(data.success){
+          $("#sign").val(data.jsonData.sign)
+          console.log(data.jsonData.sign);
+         console.log(data);
+        }else{
+          layer.msg(data.msg);
+        }
+      },
+      error:function (e) {
+        console.log(e);
+      }
+    })
+  }*/
+</script>
+<script src="/jiacerconsole/static/plugins/ace/js/ace.js"></script>
+<script src="/jiacerconsole/static/plugins/ace/js/ace.sidebar.js"></script>
+<script src="/jiacerconsole/static/js/map.js"></script>
+<script src="/jiacerconsole/static/js/menu.js"></script>
+<script src="/jiacerconsole/static/modules/help.js"></script>
+<script src="/jiacerconsole/static/modules/applys/1/form.js"></script>
+<script type="text/javascript">
+  //  $("#mainFrame").hide();
+
+  /*  $(function () {
+   initPage();
+   //读卡
+   $("#readCardBtn").click(function () {
+   console.log("ok");
+   //      readCard();
+   })
+   // var classTime = $ {
+   //     model.classTime != null ? model.classTime : '""'
+   // };
+   // var courseId = $ {
+   //     model.courseId != null ? model.courseId : '""'
+   // };
+   //initExamClass();
+   $("#sourceType").bind('change', function () {
+   $("#sourceValueDiv").html("");
+   var id = $(this).find("option:selected").attr("id");
+   initSourceSec(id, '');
+   });
+
+   $("#sourceTypeSec").bind('change', function () {
+   var pid = GetSelectValue("#sourceType");
+   if (pid == '01') {
+   var id = GetSelectValue("#sourceTypeSec");
+   initSourceValue(id, '');
+   } else if (pid == '02') {
+   $("#sourceValueDiv").html("");
+   $("#sourceValueDiv").append(sourceValueInput);
+   }
+   });
+
+
+   //initCourses(courseId, courseId);
+   // var values = $("#courseId").find("option:selected").attr("ct");
+   //initClassTimes(values, classTime);
+   //$("#courseId").hide()
+   $(".radio_box input").click(function () {
+   $(this).siblings(".circle-box").addClass("active");
+   $(this).parent().siblings(".radio_box").children(".circle-box").removeClass("active");
+   })
+   $(".radio_box input").each(function () {
+   if ($(this).is(":checked")) {
+   $(this).siblings(".circle-box").addClass("active");
+   $(this).parent().siblings(".radio_box").children(".circle-box").removeClass("active");
+   }
+   })
+
+   })
+   //  读卡
+   function initPage() {
+   var sourceSecValue = $("#sourceSecOld").val();
+   var sourceValue = $("#sourceValueOld").val();
+   var id = $("#sourceType").find("option:selected").attr("id");
+   //alert(id);
+   //alert(sourceSecValue);
+   //alert(sourceValue);
+
+   initSourceSec(id, sourceSecValue);
+   var pid = GetSelectValue("#sourceType");
+   if (pid == '01') {
+   var id = GetSelectValue("#sourceTypeSec");
+   initSourceValue(id, sourceValue);
+   } else if (pid == '02') {
+   $("#sourceValueDiv").html("");
+   $("#sourceValueDiv").append(sourceValueInput);
+   $("#sourceTypeValue").val(sourceValue);
+   }
+   }
+   //初始化zh菜单
+   $(function () {
+   menu.initJsonData();
+   });
+
+   var user = {
+   //保存用户数据
+   modifyPwd: function () {
+   var params = {};
+   params.oldPassword = $("#oldPassword").val();
+   params.newPassword = $("#password").val();
+   params.repeatPassword = $("#repeatPassword").val();
+   var result = user.validParam(params);
+   if (!result) {
+   return;
+   }
+
+   layer.confirm('确认修改密码吗？', function () {
+   $.ajax({
+   url: ctx + "/system/user/modifyPwd",
+   type: "POST",
+   data: params,
+   async: false,
+   success: function (data) {
+   if (data.success) {
+   layer.alert(data.msg);
+   } else {
+   layer.msg(data.msg);
+   }
+   }
+   });
+   });
+   }
+   ,
+   //校验参数
+   validParam: function (params) {
+   if (isEmpty(params.oldPassword)) {
+   layer.msg("请填写[旧密码]");
+   return false;
+   }
+
+   if (isEmpty(params.newPassword)) {
+   layer.msg("请填写[新密码]");
+   return false;
+   }
+
+   if (params.newPassword == params.oldPassword) {
+   layer.msg("请填写[新密码和旧密码一样]");
+   return false;
+   }
+
+   if (params.newPassword != params.repeatPassword) {
+   return false;
+   }
+
+   return true;
+   }
+   }*/
+
+</script>
+</body>
+</html>

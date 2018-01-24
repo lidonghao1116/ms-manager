@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiacer.modules.mybatis.dao.CoursesBaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.jiacer.modules.mybatis.entity.CourseBaseInfoEntity" >
+    <id column="course_id" property="courseId" jdbcType="INTEGER" />
+    <id column="authority_id" property="authorityId" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="sort_no" property="sortNo" jdbcType="INTEGER" />
+    <result column="is_usable" property="isUsable" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="total_hours" property="totalHours" jdbcType="INTEGER"/>
+    <result column="exam_type" property="examType" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="authenticate_grade" property="authenticateGrade" jdbcType="VARCHAR"/>
+    <result column="cert_name" property="certName" jdbcType="VARCHAR"/>
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_account" property="addAccount" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="modify_account" property="modifyAccount" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_sql">
+  	course_id, authority_id, course_name, sort_no, is_usable, status, total_hours, 
+  	exam_type, remarks, authenticate_grade,cert_name, add_time, add_account, modify_time,modify_account
+  </sql>
+  
+  <select id="getstatusById" parameterType="java.lang.Integer" resultType="java.lang.String">
+  	SELECT
+  	   status
+  	FROM
+  	   course_base_info
+  	WHERE
+  	course_id= #{courseBaseInfoId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getcourseInfoByMap" parameterType="map" resultMap="BaseResultMap">
+  	SELECT 
+		a.course_name,a.course_id
+	FROM
+		course_base_info a ,
+		course_institution b
+	WHERE
+		a.course_id=b.course_id
+		AND a.status='01'
+		AND b.status='0'
+		AND b.institution_id=#{institutionInfoId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getBaseCourseInfoById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  		SELECT
+  		    <include refid="Base_Column_sql"/>
+  		FROM
+  		    course_base_info
+  		WHERE
+  		    course_id= #{courseId,jdbcType=INTEGER}
+  </select>
+</mapper>

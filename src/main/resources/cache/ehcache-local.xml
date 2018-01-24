@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+
+	<diskStore path="../temp/jiacer/ehcache" />
+	
+		<!-- 默认缓存配置. -->
+	<defaultCache maxEntriesLocalHeap="100" eternal="false" timeToIdleSeconds="1800" timeToLiveSeconds="3600"
+		overflowToDisk="true" maxEntriesLocalDisk="100" />
+
+	<!-- diskPersistent="true" 表示缓存到磁盘 -->
+	<!-- 系统缓存   -->
+	<cache name="systemCache" maxEntriesLocalHeap="100" eternal="true" overflowToDisk="true"/>
+    
+</ehcache>

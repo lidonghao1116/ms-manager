@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiacer.modules.mybatis.dao.InstitutionInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jiacer.modules.mybatis.model.InstitutionInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="school_name" property="schoolName" jdbcType="VARCHAR" />
+    <result column="privince" property="privince" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="school_address" property="schoolAddress" jdbcType="VARCHAR" />
+    <result column="school_phone" property="schoolPhone" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="licence_no" property="licenceNo" jdbcType="VARCHAR" />
+    <result column="licence_img" property="licenceImg" jdbcType="VARCHAR" />
+    <result column="agent_name" property="agentName" jdbcType="VARCHAR" />
+    <result column="agent_id_number" property="agentIdNumber" jdbcType="VARCHAR" />
+    <result column="idcard_Front_img" property="idcardFrontImg" jdbcType="VARCHAR" />
+    <result column="idcard_Back_img" property="idcardBackImg" jdbcType="VARCHAR" />
+    <result column="saler" property="saler" jdbcType="VARCHAR" />
+    <result column="applt_time" property="appltTime" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="apply_courses" property="applyCourses" jdbcType="VARCHAR" />
+    <result column="is_usable" property="isUsable" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_account" property="addAccount" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="modify_account" property="modifyAccount" jdbcType="VARCHAR" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, school_name, privince, city, area, school_address, school_phone, contacts, contact_phone, 
+    company_name, licence_no, licence_img, agent_name, agent_id_number, idcard_Front_img, 
+    idcard_Back_img, saler, applt_time, remarks, apply_courses, is_usable, add_time, 
+    add_account, modify_time, modify_account, logo_url
+  </sql>
+ 
+ <select id="getInstitutionInfoById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+ 	select 
+ 	<include refid="Base_Column_List" />
+ 	from institution_info
+ 	where 
+ 	id= #{institutionInfoId,jdbcType=INTEGER}
+ </select>
+ 
+ <update id="updateInstitution" parameterType="com.jiacer.modules.business.bean.form.InstitutionQuery">
+ 	update institution_info
+ 	<set>
+        <if test="schoolAddress !=null">
+            school_address= #{schoolAddress,jdbcType=VARCHAR},
+        </if>
+        <if test="privince !=null">
+            privince= #{privince,jdbcType=VARCHAR},
+        </if>
+        <if test="city !=null">
+            city= #{city,jdbcType=VARCHAR},
+        </if>
+        <if test="area !=null">
+            area= #{area,jdbcType=VARCHAR},
+        </if>
+ 		<if test="schoolPhone !=null">
+ 			school_phone= #{schoolPhone,jdbcType=VARCHAR},
+ 		</if>
+ 		<if test="contacts !=null">
+ 			contacts= #{contacts,jdbcType=VARCHAR},
+ 		</if>
+ 		<if test="logoUrl !=null">
+ 			logo_url= #{logoUrl,jdbcType=VARCHAR},
+ 		</if>
+ 	</set>
+ 	where id =#{id,jdbcType=INTEGER}
+ 
+ </update>
+  
+</mapper>

@@ -1,0 +1,83 @@
+var obj={
+	add:function(){
+		
+		var params={
+			typeName:$("#typeName").val(),
+			examType:GetSelectValue("#examType"),
+			totalHours:$("#totalHours").val(),
+			classTimes:getCheckData("input[name='classTimes']","value"),
+			remarks:$("#remarks").val(),
+			examFee:$("#examFee").val(),
+			certificateFee:$("#certificateFee").val(),
+			otherFee:$("#otherFee").val(),
+			isNeedHasPf:$("input[name='isNeedHasPf']:checked").val()
+		};
+		
+		//提交问题
+		layer.confirm('确认添加此课程吗？',function(){
+	        $.ajax({
+	          url :config.coursesAddUrl,
+	          type : "POST",
+	          data: params,
+	          success: function(data){
+	            if(data.success){
+	            	layer.alert(data.msg, {icon:1});
+	            	window.location.href=config.coursesListUrl;
+	            }else{
+	              	layer.msg(data.msg);
+	            }
+	          }
+	        });
+		});
+		
+	}
+	,
+	modify:function(){
+		var params={
+			id:$("#id").val(),
+			typeName:$("#typeName").val(),
+			classTimes:getCheckData("input[name='classTimes']","value"),
+			remarks:$("#remarks").val(),
+			status:GetSelectValue("#status"),
+			examFee:$("#examFee").val(),
+			certificateFee:$("#certificateFee").val(),
+			otherFee:$("#otherFee").val(),
+			isNeedHasPf:$("input[name='isNeedHasPf']:checked").val()
+		};
+		
+		//提交问题
+		layer.confirm('确认修改课程吗？',function(){
+	        $.ajax({
+	          url :config.coursesModifyUrl,
+	          type : "POST",
+	          data: params,
+	          success: function(data){
+	            if(data.success){
+	            	layer.alert(data.msg, {icon:1});
+	            	window.location.href=config.coursesListUrl;
+	            }else{
+	              	layer.msg(data.msg);
+	            }
+	          }
+	        });
+		});
+		
+	}
+	,
+	init:function(){
+		//初始化绑定事件
+		$("#addBtn").bind("click",function(){
+			obj.add();
+		});
+		
+		$("#modifyBtn").bind("click",function(){
+			obj.modify();
+		});
+	}
+}
+
+
+
+$(function(){
+	obj.init();
+});

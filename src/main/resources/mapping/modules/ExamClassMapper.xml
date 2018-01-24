@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiacer.modules.mybatis.dao.ExamClassMapper">
+  <resultMap id="BaseResultMap" type="com.jiacer.modules.mybatis.entity.ExamClassEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="learn_types_id" jdbcType="INTEGER" property="courseId" />
+    <result column="shool_id" jdbcType="INTEGER" property="shoolId" />
+    <result column="class_number" jdbcType="VARCHAR" property="classNumber" />
+    <result column="exam_form" jdbcType="VARCHAR" property="examForm" />
+    <result column="exam_status" jdbcType="VARCHAR" property="examStatus" />
+    <result column="theory_date" jdbcType="TIMESTAMP" property="theoryDate" />
+    <result column="theory_address" jdbcType="VARCHAR" property="theoryAddress" />
+    <result column="operation_date" jdbcType="TIMESTAMP" property="operationDate" />
+    <result column="operation_address" jdbcType="VARCHAR" property="operationAddress" />
+    <result column="is_usable" jdbcType="VARCHAR" property="isUsable" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="add_account" jdbcType="VARCHAR" property="addAccount" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="modify_account" jdbcType="VARCHAR" property="modifyAccount" />
+    <result column="institution_info_id" jdbcType="INTEGER" property="institutionInfoId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, class_name, learn_types_id courseId, shool_id, class_number, exam_form, exam_status, theory_date, 
+    theory_address, operation_date, operation_address, is_usable, add_time, add_account, 
+    modify_time, modify_account,institution_info_id, remark
+  </sql>
+  <select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exam_class
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getExamClass" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exam_class
+    <where>
+    	institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+    	<if test="isUsable != null and isUsable != ''">
+    		and class_number = #{classNumber,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  
+   
+  <select id="getCourseIdExamClassDsh" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exam_class
+    where learn_types_id = #{courseId,jdbcType=INTEGER} and is_usable = "1" and exam_status="01" and institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+  </select>
+ 	
+ 
+  <select id="getCourseIdExamClass" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exam_class
+    where learn_types_id = #{courseId,jdbcType=INTEGER} and is_usable = "1" and exam_status="01" and institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+  </select>
+ 
+ 
+  <insert id="insert" parameterType="com.jiacer.modules.mybatis.entity.ExamClassEntity">
+    insert into exam_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
+      <if test="courseId != null">
+        learn_types_id,
+      </if>
+      <if test="shoolId != null">
+        shool_id,
+      </if>
+      <if test="classNumber != null">
+        class_number,
+      </if>
+      <if test="examForm != null">
+        exam_form,
+      </if>
+      <if test="examStatus != null">
+        exam_status,
+      </if>
+      <if test="theoryDate != null">
+        theory_date,
+      </if>
+      <if test="theoryAddress != null">
+        theory_address,
+      </if>
+      <if test="operationDate != null">
+        operation_date,
+      </if>
+      <if test="operationAddress != null">
+        operation_address,
+      </if>
+      <if test="isUsable != null">
+        is_usable,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="addAccount != null">
+        add_account,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="modifyAccount != null">
+        modify_account,
+      </if>
+      <if test="institutionInfoId != null">
+        institution_info_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="shoolId != null">
+        #{shoolId,jdbcType=INTEGER},
+      </if>
+      <if test="classNumber != null">
+        #{classNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="examForm != null">
+        #{examForm,jdbcType=VARCHAR},
+      </if>
+      <if test="examStatus != null">
+        #{examStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="theoryDate != null">
+        #{theoryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="theoryAddress != null">
+        #{theoryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDate != null">
+        #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationAddress != null">
+        #{operationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isUsable != null">
+        #{isUsable,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addAccount != null">
+        #{addAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyAccount != null">
+        #{modifyAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionInfoId != null">
+        #{institutionInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jiacer.modules.mybatis.entity.ExamClassEntity">
+    update exam_class
+    <set>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null">
+        learn_types_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="shoolId != null">
+        shool_id = #{shoolId,jdbcType=INTEGER},
+      </if>
+      <if test="classNumber != null">
+        class_number = #{classNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="examForm != null">
+        exam_form = #{examForm,jdbcType=VARCHAR},
+      </if>
+      <if test="examStatus != null">
+        exam_status = #{examStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="theoryDate != null">
+        theory_date = #{theoryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="theoryAddress != null">
+        theory_address = #{theoryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDate != null">
+        operation_date = #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationAddress != null">
+        operation_address = #{operationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isUsable != null">
+        is_usable = #{isUsable,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addAccount != null">
+        add_account = #{addAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyAccount != null">
+        modify_account = #{modifyAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="count" parameterType="map" resultType="int">
+  	select 
+		count(0)
+	from 
+		exam_class e left join learn_types l on e.learn_types_id = l.id 
+		LEFT JOIN schools s on e.shool_id = s.id
+    <where>
+    	e.institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+    	<if test="isUsable != null and isUsable != ''">
+    		and e.is_usable = #{isUsable,jdbcType=VARCHAR}
+    	</if>
+    	<if test="className != null and className != ''">
+    		and e.class_name like #{className,jdbcType=VARCHAR}
+    	</if>
+    	<if test="classNumber != null and classNumber != ''">
+    		and e.class_number like #{classNumber,jdbcType=VARCHAR}
+    	</if>
+		<if test="courseId != null">
+	        and e.learn_types_id = #{courseId,jdbcType=INTEGER}
+      	</if>
+      	<if test="shoolId != null">
+        	and e.shool_id = #{shoolId,jdbcType=INTEGER}
+      	</if>
+        <if test="examStatus != null">
+        	and e.exam_status = #{examStatus,jdbcType=VARCHAR}
+      	</if>
+      	<if test="examStatusList != null and examStatusList.size()!=0">
+    		and e.exam_status in
+			<foreach item="item" index="index" collection="examStatusList" open="(" separator="," close=")">
+			  #{item}
+			</foreach>
+    	</if>
+    </where>
+  </select>
+  <!-- 
+  <select id="getPageList" parameterType="map" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from exam_class
+    <where>
+    	institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+    	<if test="isUsable != null and isUsable != ''">
+    		and is_usable = #{isUsable,jdbcType=VARCHAR}
+    	</if>
+    	<if test="className != null and className != ''">
+    		and class_name like #{className,jdbcType=VARCHAR}
+    	</if>
+    	<if test="classNumber != null and classNumber != ''">
+    		and class_number like #{classNumber,jdbcType=VARCHAR}
+    	</if>
+		<if test="courseId != null">
+	        and learn_types_id = #{courseId,jdbcType=INTEGER}
+      	</if>
+      	<if test="shoolId != null">
+        	and shool_id = #{shoolId,jdbcType=INTEGER}
+      	</if>
+        <if test="examStatus != null">
+        	and exam_status = #{examStatus,jdbcType=VARCHAR}
+      	</if>
+      	<if test="examStatusList != null and examStatusList.size()!=0">
+    		and exam_status in
+			<foreach item="item" index="index" collection="examStatusList" open="(" separator="," close=")">
+			  #{item}
+			</foreach>
+    	</if>
+    </where>
+    order by add_time desc
+    limit #{offset},#{pageSize}
+  </select>
+   -->
+
+	<select id="getPageList" parameterType="map" resultMap="BaseResultMap">
+  	select 
+		e.*,
+		l.type_name courseName,
+		l.authenticate_grade authenticateGrade,
+		s.school_name schoolName 
+	from 
+		exam_class e left join learn_types l on e.learn_types_id = l.id 
+		LEFT JOIN schools s on e.shool_id = s.id
+
+    <where>
+    	e.institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+    	<if test="isUsable != null and isUsable != ''">
+    		and e.is_usable = #{isUsable,jdbcType=VARCHAR}
+    	</if>
+    	<if test="className != null and className != ''">
+    		and e.class_name like #{className,jdbcType=VARCHAR}
+    	</if>
+    	<if test="classNumber != null and classNumber != ''">
+    		and e.class_number like #{classNumber,jdbcType=VARCHAR}
+    	</if>
+		<if test="courseId != null">
+	        and e.learn_types_id = #{courseId,jdbcType=INTEGER}
+      	</if>
+      	<if test="shoolId != null">
+        	and e.shool_id = #{shoolId,jdbcType=INTEGER}
+      	</if>
+        <if test="examStatus != null">
+        	and e.exam_status = #{examStatus,jdbcType=VARCHAR}
+      	</if>
+      	<if test="examStatusList != null and examStatusList.size()!=0">
+    		and e.exam_status in
+			<foreach item="item" index="index" collection="examStatusList" open="(" separator="," close=")">
+			  #{item}
+			</foreach>
+    	</if>
+    </where>
+    order by e.add_time desc
+    limit #{offset},#{pageSize}
+  </select>
+
+	<select id="findAllList" parameterType="com.jiacer.modules.mybatis.entity.ExamClassEntity" resultMap="BaseResultMap">
+	  	select 
+	    <include refid="Base_Column_List" />
+	    from exam_class
+	    <where>
+	    	institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+	    	<if test="isUsable != null and isUsable != ''">
+	    		and is_usable = #{isUsable,jdbcType=VARCHAR}
+	    	</if>
+	    	<if test="examStatus != null and examStatus != ''">
+	    		and exam_status = #{examStatus,jdbcType=VARCHAR}
+	    	</if>
+	    	<if test="learnTypesId != null and examStatus != ''">
+	    		and learn_types_id = #{learnTypesId,jdbcType=VARCHAR}
+	    	</if>
+	    	<if test="classNumber != null and examStatus != ''">
+	    		and class_number = #{classNumber,jdbcType=INTEGER}
+	    	</if>
+	    	
+	    </where>
+	    order by add_time desc
+    </select>
+    
+    <select id="getExam" parameterType="com.jiacer.modules.mybatis.entity.ExamClassEntity" resultMap="BaseResultMap">
+	  	select 
+	    <include refid="Base_Column_List" />
+	    from exam_class
+	    <where>
+	    	institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+	    	<if test="classNumber != null and examStatus != ''">
+	    		and class_number = #{classNumber,jdbcType=INTEGER}
+	    	</if>
+	    </where>
+    </select>
+    
+    
+    
+</mapper>

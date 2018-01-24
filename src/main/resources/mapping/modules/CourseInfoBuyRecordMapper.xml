@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiacer.modules.mybatis.dao.CourseInfoBuyRecordDao">
+  <resultMap id="BaseResultMap" type="com.jiacer.modules.mybatis.entity.CourseInfoBuyRecordEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="institution_info_id" jdbcType="INTEGER" property="institutionInfoId" />
+    <result column="stu_user_info_id" jdbcType="INTEGER" property="stuUserInfoId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+   	id,institution_info_id,stu_user_info_id,course_id
+  </sql>
+  <select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course_info_buy_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="insert" parameterType="com.jiacer.modules.mybatis.entity.CourseInfoBuyRecordEntity">
+    insert into course_info_buy_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="institutionInfoId != null">
+        institution_info_id,
+      </if>
+      <if test="stuUserInfoId != null">
+        stu_user_info_id,
+      </if>
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="institutionInfoId != null">
+        #{institutionInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="stuUserInfoId != null">
+        #{stuUserInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="count" parameterType="map" resultType="int">
+  	select 
+    count(0)
+    from course_info_buy_record
+    <where>
+		institution_info_id = #{institutionInfoId,jdbcType=INTEGER}
+    	and stu_user_info_id = #{stuUserInfoId,jdbcType=INTEGER}
+    	and user_id = #{userId,jdbcType=INTEGER}
+    	and course_id = #{courseId,jdbcType=INTEGER}
+    </where>
+  </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
